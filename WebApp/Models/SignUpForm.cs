@@ -28,15 +28,17 @@ public class SignUpForm
     public string Password { get; set; } = null!;
 
 
-    [Display(Name = "Confirm Password", Prompt = "Confirm password", Order = 3)]
+    [Display(Name = "Confirm Password", Prompt = "Confirm password", Order = 4)]
     [DataType(DataType.Password)]
     [Required(ErrorMessage = "Password must be confirmed")]
     [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{8,}$", ErrorMessage = "Invalid password format")]
-    [Compare(nameof(Password), ErrorMessage = "password dosent match")]
+    [Compare(nameof(Password), ErrorMessage = "password did not match")]
     public string ConfirmPassword { get; set; } = null!;
 
 
     [Display(Name = "I agree to the terms", Order = 5)]
+    [Required(ErrorMessage = "You must agree to Terms and Conditions")]
     [Range(typeof(bool), "true", "true", ErrorMessage = "You must agree to Terms and Conditions")]
     public bool TermsAndConditions { get; set; } = false;
+   
 }
