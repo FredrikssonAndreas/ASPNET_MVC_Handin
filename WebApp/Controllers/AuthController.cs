@@ -17,7 +17,7 @@ public class AuthController : Controller
     {
         if (ModelState.IsValid)
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Account");
         }
         return View(viewmodel);
     }
