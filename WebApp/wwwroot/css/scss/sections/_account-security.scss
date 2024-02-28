@@ -1,0 +1,180 @@
+#security {
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+
+    .container {
+        display: flex;
+
+        .account-nav {
+            width: 20%;
+            height: 90vh;
+            border-right: 1px solid rgb(147, 151, 173, 0.3);
+            margin-right: 10rem;
+
+
+
+            .nav-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 1rem;
+                padding-top: 3.5rem;
+
+                img {
+                }
+            }
+
+            .nav-name-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-right: 1rem;
+
+                h2 {
+                    margin: 0;
+                }
+
+                p {
+                    margin: 0;
+                    margin-bottom: 1.5rem;
+                }
+            }
+
+            .nav-buttons {
+                margin-right: 1rem;
+
+                a {
+                    display: flex;
+                    justify-content: start;
+                    font-weight: 700;
+                }
+
+                .btn-gray {
+                    background-color: white;
+
+
+                    &:hover {
+                        background-color: #6366F1;
+                    }
+                }
+            }
+        }
+
+        .account-security {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+
+            h1 {
+            }
+
+            .security {
+
+                h3 {
+                    color: #6366F1;
+                }
+
+                .security-content {
+                    justify-content: center;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-areas:
+                        "current empty" "new confirm";
+                    gap: .5rem;
+
+
+                    .security-group {
+                        display: flex;
+                        flex-direction: column;
+                        color: $gray-900;
+                        font-weight: 700;
+
+                        span {
+                            color: $danger;
+                            font-weight: 500;
+                            opacity: 0.7;
+                        }
+
+                        input {
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
+
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
+                        }
+                    }
+
+                    #current-password {
+                        grid-area: current;
+                    }
+
+                    #new-password {
+                        grid-area: new;
+                    }
+
+                    #confirm-password {
+                        grid-area: confirm;
+                    }
+                }
+
+                .security-buttons {
+                    display: flex;
+                    gap: 1rem;
+                    padding-top: 2rem;
+                    padding-bottom: 2rem;
+                    border-bottom: 1px solid rgb(147, 151, 173, 0.3);
+
+                    .btn-gray {
+                    }
+                }
+            }
+
+
+            .account-delete {
+                padding-top: 2rem;
+
+                .delete {
+
+                    h4 {
+                        color: #6366F1
+                    }
+
+                    p {
+                    }
+
+                    .delete-box {
+
+                        .deletebox-group {
+                        }
+
+                        input {
+                        }
+
+                        label {
+                        }
+
+                        span {
+                        }
+                    }
+                }
+
+                .delete-button {
+                    display: flex;
+                    padding-top: 2rem;
+                    .btn-theme {
+                        background-color: $danger;
+                        
+
+                        &:hover {
+                            color: black;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

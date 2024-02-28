@@ -38,4 +38,22 @@ public class AccountController : Controller
 		}
 		return View(viewmodel);
 	}
+
+    [HttpGet]
+    public IActionResult SavedItems()
+    {
+        var viewmodel = new AccountSavedItemsViewModel();
+        return View(viewmodel);
+    }
+
+    [HttpPost]
+
+    public IActionResult SavedItems(AccountSavedItemsViewModel viewmodel)
+    {
+        if (ModelState.IsValid)
+        {
+            return RedirectToAction("SavedItems", "Account");
+        }
+        return View(viewmodel);
+    }
 }
