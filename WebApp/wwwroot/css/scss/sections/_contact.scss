@@ -4,97 +4,213 @@
 
     .container {
         display: flex;
-        flex-direction: column;
+        position: relative;
 
-        .nav-links {
+        @inclde xl {
+            justify-content: space-between;
+        }
 
-            a {
-                color: #9397ad;
-                text-decoration: none;
+
+        .left-side {
+            display: flex;
+            flex-direction: column;
+           
+
+            @include xl {
+                max-width: 30%;
             }
 
-            .home {
 
-                i {
-                    margin-right: .2rem;
+            .nav-links {
+
+                a {
+                    color: #9397ad;
+                    text-decoration: none;
+                }
+
+                .home {
+
+                    i {
+                        margin-right: .2rem;
+                    }
+                }
+
+                span {
+                }
+
+                .contact {
+                    color: $theme;
                 }
             }
 
-            span {
-            }
+            .contact-content {
+                padding-bottom: 4rem;
 
-            .contact {
-                color: $theme;
+                h1 {
+                    padding-top: 1rem;
+                }
+
+                .contact-group {
+                    display: flex;
+                    padding-top: 2rem;
+
+
+
+                    .contact-icon {
+                        padding-right: 1.5rem;
+
+                        i {
+                            font-size: 1.2rem;
+                            background-color: white;
+                            border: 1px solid white;
+                            padding: 1rem;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .contact-email {
+
+                        h2 {
+                        }
+
+                        p {
+                        }
+
+
+
+
+
+                        .btn-gray {
+                            display: flex;
+                            background-color: #F3F6FF;
+                            color: $theme;
+                            padding-left: 0;
+                            font-weight: 700;
+
+
+
+                            &:hover {
+                                color: $theme-secondary;
+                            }
+                        }
+                    }
+
+                    .contact-career {
+
+                        h2 {
+                        }
+
+                        p {
+                        }
+
+
+
+                        .btn-gray {
+                            display: flex;
+                            background-color: #F3F6FF;
+                            color: $theme;
+                            padding-left: 0;
+                            font-weight: 700;
+
+
+                            &:hover {
+                                color: $theme-secondary;
+                            }
+                        }
+                    }
+                }
             }
         }
 
-        .contact-content {
+        .right-side {
+            display: none;
 
-            h1 {
-                padding-top: 1rem;
+            @include xl {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
 
-            .contact-group {
-                display: flex;
-                padding-top: 2rem;
-                max-width: 30%;
 
-                .contact-icon {
-                    padding-right: 1.5rem;
 
-                    i {
-                        font-size: 1.2rem;
-                        background-color: white;
-                        border: 1px solid white;
-                        padding: 1rem;
-                        border-radius: 50%;
-                    }
-                }
+            .form-box {
+                background-color: white;
+                padding: 4rem 3rem 4rem 3rem;
+                position: absolute;
+                right: 0;
+                top: 3rem;
 
-                .contact-email {
 
-                    h2 {
-                    }
 
-                    p {
+                .contact-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+
+
+
+
+
+                    h3 {
                     }
 
-
-
-
-
-                    .btn-gray {
+                    .form-group {
                         display: flex;
-                        background-color: #F3F6FF;
-                        color: $theme;
-                        
+                        flex-direction: column;
+
+                        .opt {
+                            display: flex;
+                            gap: .2rem;
+
+                            p {
+                                margin: 0;
+                            }
+                        }
+
+                        label {
+                            font-weight: 700;
+                            color: $gray-900;
+                        }
+
+                        textarea {
+                            padding-bottom: 5rem;
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
 
 
-                        &:hover {
-                            color: $theme-secondary;
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
+                        }
+
+                        select {
+                            padding: .2rem;
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
+                        }
+
+                        input {
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
+
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
+                        }
+
+                        span {
+                            color: $danger;
+                            font-weight: 500;
+                            opacity: 0.7;
                         }
                     }
-                    
-                }
 
-                .contact-career {
+                    .form-button {
 
-                    h2 {
-                    }
-
-                    p {
-                    }
-
-
-
-                    .btn-gray {
-                        display: flex;
-                        background-color: #F3F6FF;
-                        color: $theme;
-
-
-                        &:hover {
-                            color: $theme-secondary;
+                        .btn-theme {
                         }
                     }
                 }

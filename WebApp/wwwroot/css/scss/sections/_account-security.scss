@@ -4,12 +4,24 @@
 
     .container {
         display: flex;
+        flex-direction: column;
+
+        @include xl {
+            display: flex;
+            flex-direction: row;
+        }
 
         .account-nav {
-            width: 20%;
-            height: 90vh;
-            border-right: 1px solid rgb(147, 151, 173, 0.3);
-            margin-right: 10rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgb(147, 151, 173, 0.3);
+
+
+            @include xl {
+                width: 20%;
+                height: 90vh;
+                border-right: 1px solid rgb(147, 151, 173, 0.3);
+                margin-right: 10rem;
+            }
 
 
 
@@ -43,11 +55,30 @@
 
             .nav-buttons {
                 margin-right: 1rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: .2rem;
+
+                @include xl {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+
+
 
                 a {
                     display: flex;
-                    justify-content: start;
+                    justify-content: center;
                     font-weight: 700;
+                    width: auto;
+
+
+                    @include xl {
+                        display: flex;
+                        font-weight: 700;
+                        justify-content: start;
+                    }
                 }
 
                 .btn-gray {
@@ -64,7 +95,11 @@
         .account-security {
             display: flex;
             flex-direction: column;
-            width: 60%;
+
+
+            @include xl {
+                width: 60%;
+            }
 
             h1 {
             }
@@ -164,9 +199,10 @@
                 .delete-button {
                     display: flex;
                     padding-top: 2rem;
+
                     .btn-theme {
                         background-color: $danger;
-                        
+
 
                         &:hover {
                             color: black;

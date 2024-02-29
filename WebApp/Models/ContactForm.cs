@@ -22,4 +22,6 @@ public class ContactForm
     [Display(Name = "Message", Prompt = "Enter your message here", Order = 3)]
     [Required(ErrorMessage = "Cannot leave this empty")]
     public string Message { get; set; } = null!;
+
+    public string ServiceTitle { get; set; } = "Choose the service you are interested in";
 }
