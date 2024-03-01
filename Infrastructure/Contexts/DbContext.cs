@@ -2,6 +2,6 @@
 
 namespace Infrastructure.Contexts;
 
-public class DbContext : IdentityDbContext<>
+public class DbContext
 {
 }

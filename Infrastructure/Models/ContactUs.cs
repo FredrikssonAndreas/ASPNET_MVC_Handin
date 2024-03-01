@@ -1,4 +1,4 @@
-﻿namespace WebApp.Models;
+﻿namespace Infrastructure.Models;
 
 public class ContactUs
 {
