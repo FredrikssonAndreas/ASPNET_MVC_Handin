@@ -886,10 +886,13 @@ footer .container .social-media a:hover {
   color: #0B0F19;
   font-weight: 700;
 }
-#signup .container .signup-form .content .input-group span {
+#signup .container .signup-form .content .input-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #signup .container .signup-form .content .input-group input {
   border: 1px solid #D4D7E5;
@@ -974,10 +977,13 @@ footer .container .social-media a:hover {
   color: #0B0F19;
   font-weight: 700;
 }
-#signin .container .signin-form .content .input-group span {
+#signin .container .signin-form .content .input-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #signin .container .signin-form .content .input-group input {
   border: 1px solid #D4D7E5;
@@ -1113,15 +1119,19 @@ footer .container .social-media a:hover {
   }
 }
 #account .container .account-details .basic .basic-content .basic-group {
+  position: relative;
   display: flex;
   flex-direction: column;
   color: #0B0F19;
   font-weight: 700;
 }
-#account .container .account-details .basic .basic-content .basic-group span {
+#account .container .account-details .basic .basic-content .basic-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #account .container .account-details .basic .basic-content .basic-group input {
   border: 1px solid #D4D7E5;
@@ -1173,10 +1183,19 @@ footer .container .social-media a:hover {
   gap: 0.5rem;
 }
 #account .container .account-details .address .address-content .address-group {
+  position: relative;
   display: flex;
   flex-direction: column;
   color: #0B0F19;
   font-weight: 700;
+}
+#account .container .account-details .address .address-content .address-group span.field-validation-error {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #account .container .account-details .address .address-content .address-group input {
   border: 1px solid #D4D7E5;
@@ -1299,15 +1318,19 @@ footer .container .social-media a:hover {
   gap: 0.5rem;
 }
 #security .container .account-security .security .security-content .security-group {
+  position: relative;
   display: flex;
   flex-direction: column;
   color: #0B0F19;
   font-weight: 700;
 }
-#security .container .account-security .security .security-content .security-group span {
+#security .container .account-security .security .security-content .security-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #security .container .account-security .security .security-content .security-group input {
   border: 1px solid #D4D7E5;
@@ -1544,6 +1567,7 @@ footer .container .social-media a:hover {
   gap: 1rem;
 }
 #contact .container .right-side .form-box .contact-form .form-group {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -1581,10 +1605,13 @@ footer .container .social-media a:hover {
 #contact .container .right-side .form-box .contact-form .form-group input.input-validation-error {
   border-color: #EF4444;
 }
-#contact .container .right-side .form-box .contact-form .form-group span {
+#contact .container .right-side .form-box .contact-form .form-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #contact .map iframe {
   width: 100%;

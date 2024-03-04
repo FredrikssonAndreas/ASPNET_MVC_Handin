@@ -4,13 +4,16 @@ namespace Infrastructure.Models;
 
 public class SignUpForm
 {
-
+    [DataType(DataType.Text)]
     [Display(Name = "First name", Prompt = "Enter first name", Order = 0)]
     [Required(ErrorMessage = "Invalid first name")]
+    [MinLength(2, ErrorMessage = "Invalid first name")]
     public string FirstName { get; set; } = null!;
 
-    [Display(Name = "Last name", Prompt = "Enter last name", Order = 1)]
+	[DataType(DataType.Text)]
+	[Display(Name = "Last name", Prompt = "Enter last name", Order = 1)]
     [Required(ErrorMessage = "Invalid last name")]
+    [MinLength(2, ErrorMessage = "Invalid last name")]
     public string LastName { get; set; } = null!;
 
 

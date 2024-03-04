@@ -121,11 +121,11 @@
 					@include xl {
 						grid-template-areas:
 							"first last" "email phone" "bio bio";
-						
 					}
 
 
 					.basic-group {
+						position: relative;
 						display: flex;
 						flex-direction: column;
 						color: $gray-900;
@@ -134,9 +134,15 @@
 
 
 						span {
-							color: $danger;
-							font-weight: 500;
-							opacity: 0.7;
+
+							&.field-validation-error {
+								color: $danger;
+								font-weight: 500;
+								opacity: 0.7;
+								position: absolute;
+								top: 0;
+								right: 0;
+							}
 						}
 
 						input {
@@ -208,10 +214,23 @@
 					gap: .5rem;
 
 					.address-group {
+						position: relative;
 						display: flex;
 						flex-direction: column;
 						color: $gray-900;
 						font-weight: 700;
+
+						span {
+
+							&.field-validation-error {
+								color: $danger;
+								font-weight: 500;
+								opacity: 0.7;
+								position: absolute;
+								top: 0;
+								right: 0;
+							}
+						}
 
 						input {
 							border: 1px solid $gray-400;

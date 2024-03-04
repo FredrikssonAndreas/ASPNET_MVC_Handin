@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{BB377A72-A8B4-4210-A82A-580BCDE6160A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{1C55F9F4-0E52-4B0E-98CB-C7A897376579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{1C55F9F4-0E52-4B0E-98CB-C7A897376579}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
