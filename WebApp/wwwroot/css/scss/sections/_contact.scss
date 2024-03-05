@@ -131,14 +131,22 @@
                 justify-content: center;
             }
 
-
-
             .form-box {
                 background-color: white;
                 padding: 4rem 3rem 4rem 3rem;
                 position: absolute;
                 right: 0;
                 top: 3rem;
+
+
+
+                &.show {
+                    display: block;
+                }
+
+                &.hide {
+                    display: none !important;
+                }
 
 
 
@@ -179,6 +187,15 @@
                             padding: .4rem;
                             border-radius: 5px;
 
+                            &.field-validation-error {
+                                color: $danger;
+                                font-weight: 500;
+                                opacity: 0.7;
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                            }
+
 
                             &.input-validation-error {
                                 border-color: $danger;
@@ -216,6 +233,9 @@
                     }
 
                     .form-button {
+
+                        #showFormBtn {
+                        }
 
                         .btn-theme {
                         }

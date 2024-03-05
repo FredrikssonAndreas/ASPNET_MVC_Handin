@@ -5,8 +5,8 @@ namespace Infrastructure.Models;
 public class ContactForm
 {
     public string Title { get; set; } = "Get In Contact With Us";
-
-    [Display(Name = "Full name", Prompt = "Enter your full name", Order = 0)]
+	[DataType(DataType.Text)]
+	[Display(Name = "Full name", Prompt = "Enter your full name", Order = 0)]
     [Required(ErrorMessage = "Cannot leave this empty")]
     public string FullName { get; set; } = null!;
 
@@ -19,6 +19,7 @@ public class ContactForm
     [Display(Name = "Service", Prompt = "Choose the service you are interested in", Order = 2)]
     public string? Service { get; set; }
 
+    [DataType(DataType.Text)]
     [Display(Name = "Message", Prompt = "Enter your message here", Order = 3)]
     [Required(ErrorMessage = "Cannot leave this empty")]
     public string Message { get; set; } = null!;
