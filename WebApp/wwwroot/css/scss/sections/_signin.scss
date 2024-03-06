@@ -73,6 +73,14 @@
 
             button {
                 margin-top: 1rem;
+                margin-bottom: .5rem;
+            }
+
+            .alert {
+                background-color: #ef4444c2;
+                text-align: center;
+                font-weight: 700;
+                color: $gray-900;
             }
 
             .get-password {

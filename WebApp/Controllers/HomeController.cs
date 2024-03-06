@@ -12,6 +12,7 @@ public class HomeController : Controller
         return View();
     }
 
+	[Route("/error")]
 	[HttpGet]
 	public IActionResult NotFound404()
 	{

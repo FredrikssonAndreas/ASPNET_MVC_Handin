@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<UserEntity> _signInManager
+
+
+<!DOCTYPE html>
 <html lang="sv-se">
 
 <head>
@@ -12,7 +15,7 @@
 
 <body>
 
-    <header>
+    <header class="@((ViewContext.RouteData.Values["Action"]!.ToString() == "Contact") ? "contact" : "standard")">
         <div class="container">
             <a href="/" id="logo">
                 <img src="~/images/silicon-logo.svg" alt="Silicon">
@@ -20,9 +23,19 @@
 
             <div id="menu">
                 <nav>
-                    <a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
-                    <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features</a>
-                    <a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                   @if (_signInManager.IsSignedIn(User))
+					{
+                        <a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+                        <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                    }
+                    else
+                    {
+                        <a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features</a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                    }
+
                 </nav>
             </div>
 
@@ -37,9 +50,16 @@
             </div>
 
             <div class="account-buttons">
-                
-                <a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
-                <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <a asp-controller="Account" asp-action="LogOut" class="btn-theme"><i class="fa-regular fa-arrow-right-from-bracket"></i>Log Out</a>
+                }
+                else
+                {
+                    <a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+                    <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+                }
             </div>
 
             <div class="btn-mobile">
@@ -59,13 +79,30 @@
             </div>
 
             <div class="account-buttons">
-                <button class="btn-gray text-s"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</button>
-                <button class="btn-theme text-s"><i class="fa-regular fa-user"></i>Sign up</button>
+                
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <a asp-controller="Account" asp-action="LogOut" class="btn-theme"><i class="fa-regular fa-arrow-right-from-bracket"></i>Log Out</a>
+                }
+                else
+                {
+                    <a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+                    <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+                }
 
                 <nav>
-                    <a class="menu-link" href="#">Overview</a>
-                    <a class="menu-link" href="#">Features</a>
-                    <a class="menu-link" href="#">Courses</a>
+                    @if (_signInManager.IsSignedIn(User))
+                    {
+                        <a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+                        <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                    }
+                    else
+                    {
+                        <a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features</a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                    }
                 </nav>
 
             </div>
@@ -78,7 +115,7 @@
         
     <footer>
         <div class="container">
-            <div class="social-media @((ViewContext.RouteData.Values["Controller"]!.ToString() == "Auth") ? " d-none" : "social-media")">
+            <div class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Auth") ? " d-none" : "social-media")">
                 <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-x"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>

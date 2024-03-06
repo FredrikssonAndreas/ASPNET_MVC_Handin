@@ -357,6 +357,12 @@ a:hover {
 header {
   padding: 15px 0;
 }
+header.standard {
+  background-color: white;
+}
+header.contact {
+  background-color: #F3F6FF;
+}
 header .container {
   display: grid;
   align-items: center;
@@ -853,6 +859,12 @@ footer .container .social-media a:hover {
   display: flex;
   flex-direction: column;
 }
+#signup .container .signup-form .alert {
+  background-color: rgba(239, 68, 68, 0.7607843137);
+  text-align: center;
+  font-weight: 700;
+  color: #0B0F19;
+}
 #signup .container .signup-form h1 {
   line-height: 160%;
   font-weight: 400;
@@ -928,6 +940,9 @@ footer .container .social-media a:hover {
   font-weight: 500;
   opacity: 0.7;
 }
+#signup .container .signup-form .btn-theme {
+  margin-bottom: 0.5rem;
+}
 
 #signin {
   padding-top: 5rem;
@@ -995,6 +1010,13 @@ footer .container .social-media a:hover {
 }
 #signin .container .signin-form button {
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+#signin .container .signin-form .alert {
+  background-color: rgba(239, 68, 68, 0.7607843137);
+  text-align: center;
+  font-weight: 700;
+  color: #0B0F19;
 }
 #signin .container .signin-form .get-password {
   margin-top: 1rem;
