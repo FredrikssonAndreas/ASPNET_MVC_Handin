@@ -9,4 +9,6 @@ public class AccountDetailsViewModel
 	public AccountBasic AccountBasic { get; set; } = new AccountBasic();
 	
 	public AccountAddress AccountAddress { get; set; } = new AccountAddress();
+
+	public AccountOptional AccountOptional { get; set; } = new AccountOptional();
 }

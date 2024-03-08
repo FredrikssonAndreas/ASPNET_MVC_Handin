@@ -12,7 +12,7 @@ public class UserEntity : IdentityUser
 
     public int? AddressID { get; set; }
 
-    public AdressEntity? Address { get; set; }
+    public AddressEntity? Address { get; set; }
 
     public int? OptionalInfoID { get; set; }
 

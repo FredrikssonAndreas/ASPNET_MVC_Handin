@@ -1,5 +1,6 @@
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,8 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
 
 }).AddEntityFrameworkStores<DataContext>();
 
+builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<OptionalInfoRepository>();
 
 
 

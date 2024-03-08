@@ -1,10 +1,10 @@
 ﻿namespace Infrastructure.Entities;
 
-public class AdressEntity
+public class AddressEntity
 {
     public int Id { get; set; } 
 
-    public string AdressLine { get; set; } = null!;
+    public string AddressLine { get; set; } = null!;
 
     public string PostalCode { get; set; } = null!;
 

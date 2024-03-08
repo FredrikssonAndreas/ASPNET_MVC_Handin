@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Infrastructure.Entities.AdressEntity", b =>
+            modelBuilder.Entity("Infrastructure.Entities.AddressEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,7 +30,7 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AdressLine")
+                    b.Property<string>("AddressLine")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -44,7 +44,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.OptionalInfoEntity", b =>
@@ -294,7 +294,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Entities.UserEntity", b =>
                 {
-                    b.HasOne("Infrastructure.Entities.AdressEntity", "Address")
+                    b.HasOne("Infrastructure.Entities.AddressEntity", "Address")
                         .WithMany("Users")
                         .HasForeignKey("AddressID");
 
@@ -358,7 +358,7 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Infrastructure.Entities.AdressEntity", b =>
+            modelBuilder.Entity("Infrastructure.Entities.AddressEntity", b =>
                 {
                     b.Navigation("Users");
                 });

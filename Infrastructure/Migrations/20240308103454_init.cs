@@ -12,18 +12,18 @@ namespace Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Adresses",
+                name: "Addresses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AdressLine = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddressLine = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Adresses", x => x.Id);
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,9 +105,9 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Adresses_AddressID",
+                        name: "FK_AspNetUsers_Addresses_AddressID",
                         column: x => x.AddressID,
-                        principalTable: "Adresses",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AspNetUsers_OptionalInfos_OptionalInfoID",
@@ -276,7 +276,7 @@ namespace Infrastructure.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Adresses");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "OptionalInfos");
