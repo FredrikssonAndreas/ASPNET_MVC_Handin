@@ -3,7 +3,6 @@ using Infrastructure.Models;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
 using WebApp.ViewModels;
 
 
@@ -54,33 +53,38 @@ public class AccountController : Controller
 				user.Email = viewmodel.AccountBasic.Email;
 				user.UserName = viewmodel.AccountBasic.Email;
 				user.PhoneNumber = viewmodel.AccountBasic.Phone;
-								
-				var result = await _userManager.UpdateAsync(user);
+							
 
-				if (result.Succeeded)
+				if (String.IsNullOrEmpty(viewmodel.AccountBasic.Bio))
 				{
-					var optional = await _optionalInfoRepository.GetOneAsync(x => x.Id == user!.OptionalInfoID);
+					var result = await _userManager.UpdateAsync(user);
+				}
+				else
+				{
+					var optional = await _optionalInfoRepository.GetOneAsync(x => x.Id == user.OptionalInfoID);
 					if (optional != null)
 					{
 						optional.Bio = viewmodel.AccountBasic.Bio;
-
-						var optionalResult = await _optionalInfoRepository.UpdateAsync(x => x.Id == optional.Id, optional);
-						if (optionalResult != null)
+						var result = await _optionalInfoRepository.UpdateAsync(x => x.Id == optional.Id, optional);
+						return RedirectToAction("Index", "Account");
+					}
+					else
+					{
+						var newOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
 						{
+							Bio = viewmodel.AccountBasic.Bio
+						});
+						if (newOptional != null)
+						{
+							user.OptionalInfoID = newOptional.Id;
+							var result = await _userManager.UpdateAsync(user);
 							return RedirectToAction("Index", "Account");
 						}
-						if (optional == null)
-						{
-							var newOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
-							{
-								Bio = viewmodel.AccountBasic.Bio
-							});
-						}
-					}					
+					}
 				}
-			};	
+			};
 		}
-		return RedirectToAction("index", "Account");
+		return RedirectToAction("Index", "Account");
 	}
 
 	[HttpPost]
