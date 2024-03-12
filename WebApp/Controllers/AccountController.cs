@@ -39,13 +39,16 @@ public class AccountController : Controller
 		return View(viewModel);
 	}
 
+
+
 	[HttpPost]
 	public async Task<IActionResult> Basic(AccountDetailsViewModel viewmodel)
 	{
-		
 		if (viewmodel.AccountBasic != null)
 		{
 			var user = await _userManager.GetUserAsync(User);
+			var optionalInfo = await Bio(viewmodel.AccountOptional);
+
 			if (user != null)
 			{
 				user.FirstName = viewmodel.AccountBasic.FirstName;
@@ -53,46 +56,26 @@ public class AccountController : Controller
 				user.Email = viewmodel.AccountBasic.Email;
 				user.UserName = viewmodel.AccountBasic.Email;
 				user.PhoneNumber = viewmodel.AccountBasic.Phone;
-							
 
-				if (String.IsNullOrEmpty(viewmodel.AccountBasic.Bio))
-				{
-					var result = await _userManager.UpdateAsync(user);
-				}
-				else
-				{
-					var optional = await _optionalInfoRepository.GetOneAsync(x => x.Id == user.OptionalInfoID);
-					if (optional != null)
-					{
-						optional.Bio = viewmodel.AccountBasic.Bio;
-						var result = await _optionalInfoRepository.UpdateAsync(x => x.Id == optional.Id, optional);
-						return RedirectToAction("Index", "Account");
-					}
-					else
-					{
-						var newOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
-						{
-							Bio = viewmodel.AccountBasic.Bio
-						});
-						if (newOptional != null)
-						{
-							user.OptionalInfoID = newOptional.Id;
-							var result = await _userManager.UpdateAsync(user);
-							return RedirectToAction("Index", "Account");
-						}
-					}
-				}
-			};
+				await _userManager.UpdateAsync(user);
+
+				
+				return RedirectToAction("Index", "Account");
+			}
 		}
-		return RedirectToAction("Index", "Account");
+		return View(viewmodel);
 	}
+
+
 
 	[HttpPost]
 	public async Task<IActionResult> Address(AccountDetailsViewModel viewmodel)
+
 	{
 		if (viewmodel.AccountAddress != null)
 		{
 			var userEntity = await _userManager.GetUserAsync(User);
+			var optionalInfo = await SecAddress(viewmodel.AccountOptional);
 
 			if (String.IsNullOrEmpty(viewmodel.AccountAddress.AddressLine1) && String.IsNullOrEmpty(viewmodel.AccountAddress.PostalCode) && String.IsNullOrEmpty(viewmodel.AccountAddress.City))
 			{
@@ -136,6 +119,7 @@ public class AccountController : Controller
 				{
 					var user = await _userManager.GetUserAsync(User);
 					if (user != null)
+
 					{
 						user.AddressID = address.Id;
 						var result = await _userManager.UpdateAsync(user);
@@ -152,26 +136,47 @@ public class AccountController : Controller
 
 
 	[HttpGet]
-	public IActionResult Security()
+	public async Task<IActionResult> Security()
 	{
-		var viewModel = new AccountSecurityViewModel();
+		var viewModel = new AccountSecurityViewModel
+		{
+			AccountBasic = await PopulateBasic()
+		};
 		return View(viewModel);
 	}
 
 	[HttpPost]
-	public IActionResult Security(AccountSecurityViewModel viewmodel)
+	public async Task<IActionResult> Security(AccountSecurityViewModel viewmodel)
 	{
-		if (ModelState.IsValid)
+		if (viewmodel.AccountSecurity != null)
 		{
-			return RedirectToAction("Index", "Account");
+			var userEntity = await _userManager.GetUserAsync(User);
+			
+			if (userEntity != null)
+			{
+				var passwordChange = await _userManager.ChangePasswordAsync(userEntity, viewmodel.AccountSecurity.CurrentPassword, viewmodel.AccountSecurity.NewPassword);
+				
+				if (passwordChange.Succeeded)
+				{
+					var result = await _userManager.UpdateAsync(userEntity);
+					if (result.Succeeded)
+					{
+						return RedirectToAction("Security", "Account");
+					}
+				}
+			}
+			return RedirectToAction("Security", "Account");
 		}
-		return View(viewmodel);
-	}
+        return RedirectToAction("Index", "Account");
+    }
 
 	[HttpGet]
-	public IActionResult SavedItems()
+	public async Task<IActionResult> SavedItems()
 	{
-		var viewmodel = new AccountSavedItemsViewModel();
+		var viewmodel = new AccountSavedItemsViewModel
+		{
+			AccountBasic = await PopulateBasic()
+		};
 		return View(viewmodel);
 	}
 
@@ -210,7 +215,8 @@ public class AccountController : Controller
 				LastName = user.LastName,
 				Email = user.Email!,
 				Phone = user.PhoneNumber,
-				Bio = user.OptionalInfo?.Bio
+				Bio = user.OptionalInfo?.Bio,
+				IsExternalAccount = user.IsExternalAccount
 			};
 		}
 		return null!;
@@ -269,6 +275,88 @@ public class AccountController : Controller
 					ProfilePictureUrl = ""
 				};
 			}
+		}
+		return null!;
+	}
+
+	private async Task<OptionalInfoEntity> SecAddress(AccountOptional optionals)
+	{
+		var userOptional = await _userManager.GetUserAsync(User);
+		var secAddress = await _optionalInfoRepository.GetOneAsync(x => x.Id == userOptional!.OptionalInfoID);
+		if (secAddress != null)
+		{
+
+			secAddress.SecAddressLine = optionals.SecAddressLine;
+			await _optionalInfoRepository.UpdateAsync(x => x.Id == secAddress.Id, secAddress);
+			return secAddress;
+
+		}
+		else
+		{
+			if (!String.IsNullOrEmpty(optionals.SecAddressLine))
+			{
+
+				var createdOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
+				{
+					SecAddressLine = optionals.SecAddressLine,
+				});
+				await _optionalInfoRepository.UpdateAsync(x => x.Id == createdOptional.Id, createdOptional);
+
+				if (createdOptional != null)
+				{
+					userOptional!.OptionalInfoID = createdOptional.Id;
+
+					var result = await _userManager.UpdateAsync(userOptional);
+
+					if (result.Succeeded)
+					{
+
+						return createdOptional;
+					}
+				}
+			}
+
+		}
+		return null!;
+	}
+
+	private async Task<OptionalInfoEntity> Bio(AccountOptional optionals)
+	{
+		var userOptional = await _userManager.GetUserAsync(User);
+		var bio = await _optionalInfoRepository.GetOneAsync(x => x.Id == userOptional!.OptionalInfoID);
+		if (bio != null)
+		{
+
+			bio.Bio = optionals.Bio;
+			await _optionalInfoRepository.UpdateAsync(x => x.Id == bio.Id, bio);
+			return bio;
+
+		}
+		else
+		{
+			if (!String.IsNullOrEmpty(optionals.Bio))
+			{
+
+				var createdOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
+				{
+					Bio = optionals.Bio,
+				});
+				await _optionalInfoRepository.UpdateAsync(x => x.Id == createdOptional.Id, createdOptional);
+
+				if (createdOptional != null)
+				{
+					userOptional!.OptionalInfoID = createdOptional.Id;
+
+					var result = await _userManager.UpdateAsync(userOptional);
+
+					if (result.Succeeded)
+					{
+
+						return createdOptional;
+					}
+				}
+			}
+
 		}
 		return null!;
 	}

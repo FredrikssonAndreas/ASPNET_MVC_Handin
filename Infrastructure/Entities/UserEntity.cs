@@ -18,4 +18,6 @@ public class UserEntity : IdentityUser
 
     public OptionalInfoEntity? OptionalInfo { get; set; }
 
+    public bool IsExternalAccount { get; set; } = false; 
+
 }

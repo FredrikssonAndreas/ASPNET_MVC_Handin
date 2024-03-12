@@ -10,5 +10,5 @@ public class OptionalInfoEntity
 
     public string? ProfilePictureUrl { get; set; }
      
-    public UserEntity? User { get; set; }
+ 
 }

@@ -15,6 +15,21 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
 
 }).AddEntityFrameworkStores<DataContext>();
 
+
+builder.Services.AddAuthentication().AddFacebook(x =>
+{
+    x.AppId = "293931280386403";
+    x.AppSecret = "adc64d8a91b7ad96f5e32dbdb3cc238b";
+    x.Fields.Add("first_name");
+    x.Fields.Add("last_name");
+});
+
+builder.Services.AddAuthentication().AddGoogle(x =>
+{
+    x.ClientId = "200009194355-vqbtfm2gg0gdu5ag5l68r7no0rlkd8cq.apps.googleusercontent.com";
+    x.ClientSecret = "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";    
+});
+
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<OptionalInfoRepository>();
 
@@ -28,7 +43,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

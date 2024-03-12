@@ -51,7 +51,7 @@
 							<label asp-for="AccountBasic.Bio"></label>
 							<p class="gray-600">(optional)</p>
 						</div>
-						<textarea class="input-bio" asp-for="AccountBasic.Bio"></textarea>
+						<textarea class="input-bio" asp-for="AccountOptional.Bio"></textarea>
 					</div>
 				</div>
 				<div class="basic-buttons">
@@ -70,7 +70,7 @@
 					</div>
 					<div id="address-line2" class="address-group">
 						<label asp-for=AccountAddress.AddressLine2></label>
-						<input asp-for="AccountAddress.AddressLine2" />
+						<input asp-for="AccountOptional.SecAddressLine" />
 					</div>
 					<div id="address-postalcode" class="address-group">
 						<label asp-for="AccountAddress.PostalCode"></label>

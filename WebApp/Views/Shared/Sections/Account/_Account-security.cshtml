@@ -12,8 +12,8 @@
 				<img src="#" alt="User Image" />
 			</div>
 			<div class="nav-name-info">
-				<h2 class="h5 gray-900">John Doe</h2>
-				<p class="gray-700">john.doe@domain.com</p>
+				<h2 class="h5 gray-900">@Model.AccountBasic.FirstName @Model.AccountBasic.LastName</h2>
+				<p class="gray-700">@Model.AccountBasic.Email</p>
 			</div>
 			<div class="nav-buttons">
 				<a asp-controller="Account" asp-action="Index" class="btn-gray"><i class="fa-regular fa-gear"></i>Account Details</a>
@@ -24,7 +24,7 @@
 		</div>
 		<div class="account-security">
 			<h1 class="h2">@Model.Title</h1>
-			<form class="security" method="post" asp-controller="Security" asp-action="Security" novalidate>
+			<form class="security" method="post" asp-controller="Account" asp-action="Security" novalidate>
 				<h3 class="h5">@Model.AccountSecurity.Title</h3>
 				<div class="security-content">
 					<div id="current-password" class="security-group">
@@ -44,7 +44,7 @@
 					</div>
 				</div>
 				<div class="security-buttons">
-					<a asp-controller="Account" asp-action="Index" class="btn-gray">Cancel</a>
+					<button class="btn-gray" type="reset">Cancel</button>
 					<button class="btn-theme" type="submit">Change password</button>
 				</div>
 			</form>
