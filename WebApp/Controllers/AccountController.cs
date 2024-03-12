@@ -164,11 +164,36 @@ public class AccountController : Controller
 						return RedirectToAction("Security", "Account");
 					}
 				}
-			}
-			return RedirectToAction("Security", "Account");
+			}			
 		}
         return RedirectToAction("Index", "Account");
     }
+
+	[HttpPost]
+	public async Task<IActionResult> DeleteUser(AccountSecurityViewModel viewmodel)
+	{
+		if (viewmodel.AccountDelete != null)
+		{
+			var userEntity = await _userManager.GetUserAsync(User);
+			if (userEntity != null)
+			{
+				if (viewmodel.AccountDelete.DeleteAccount == true)
+				{
+					var result = await _userManager.DeleteAsync(userEntity);
+					if (result.Succeeded)
+					{
+						await _signInManager.SignOutAsync();
+						return RedirectToAction("Index", "Home");
+					}
+				}
+				else
+				{
+					return RedirectToAction("Security", "Account");
+				}
+			}
+		}
+		return RedirectToAction("Security", "Account");
+	}
 
 	[HttpGet]
 	public async Task<IActionResult> SavedItems()

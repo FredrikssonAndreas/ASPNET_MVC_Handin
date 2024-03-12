@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="account-nav">
 			<div class="nav-image">
-				<img src="#" alt="User Image" />
+				<img src="/images/ProfileAvatar.svg" alt="User Image" />
 			</div>
 			<div class="nav-name-info">
 				<h2 class="h5 gray-900">@Model.AccountBasic.FirstName @Model.AccountBasic.LastName</h2>
@@ -49,16 +49,15 @@
 				</div>
 			</form>
 			<div class="account-delete">
-				<form class="delete" method="post" asp-controller="Auth" asp-action="SignIn">
+				<form class="delete" method="post" asp-controller="Account" asp-action="DeleteUser">
 					<h4 class="h5">@Model.AccountDelete.Title</h4>
 					<p class="gray-700">@Model.AccountDelete.Description</p>
 					<div id="delete-box" class="deletebox-group">
 						<input asp-for=AccountDelete.DeleteAccount />
 						<label asp-for="AccountDelete.DeleteAccount">@Model.AccountDelete.ConfirmDelete</label>
 						<span class="checkbox-error" asp-validation-for="AccountDelete.DeleteAccount"></span>
-						<span asp-for=@Model.AccountDelete.ConfirmDelete></span>
+						<span asp-for=@Model.AccountDelete.DeleteAccount></span>
 					</div>
-
 					<div class="delete-button">
 						<button class="btn-theme" type="submit">Delete</button>
 					</div>

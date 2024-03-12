@@ -178,7 +178,9 @@
             .account-delete {
                 padding-top: 2rem;
 
+
                 .delete {
+
 
                     h4 {
                         color: #6366F1
@@ -187,33 +189,29 @@
                     p {
                     }
 
-                    .delete-box {
+                    .deletebox-group {
 
-                        .deletebox-group {
-                        }
-
-                        input {
-                        }
-
-                        label {
-                        }
-
-                        span {
+                        .checkbox-error {
+                            color: $danger;
+                            font-weight: 500;
+                            opacity: 0.7;
                         }
                     }
-                }
-
-                .delete-button {
-                    display: flex;
-                    padding-top: 2rem;
-
-                    .btn-theme {
-                        background-color: $danger;
 
 
-                        &:hover {
-                            color: black;
-                            font-weight: 700;
+
+                    .delete-button {
+                        display: flex;
+                        padding-top: 2rem;
+
+                        .btn-theme {
+                            background-color: $danger;
+
+
+                            &:hover {
+                                color: black;
+                                font-weight: 700;
+                            }
                         }
                     }
                 }

@@ -1393,14 +1393,19 @@ footer .container .social-media a:hover {
 #security .container .account-security .account-delete .delete h4 {
   color: #6366F1;
 }
-#security .container .account-security .account-delete .delete-button {
+#security .container .account-security .account-delete .delete .deletebox-group .checkbox-error {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+}
+#security .container .account-security .account-delete .delete .delete-button {
   display: flex;
   padding-top: 2rem;
 }
-#security .container .account-security .account-delete .delete-button .btn-theme {
+#security .container .account-security .account-delete .delete .delete-button .btn-theme {
   background-color: #EF4444;
 }
-#security .container .account-security .account-delete .delete-button .btn-theme:hover {
+#security .container .account-security .account-delete .delete .delete-button .btn-theme:hover {
   color: black;
   font-weight: 700;
 }
