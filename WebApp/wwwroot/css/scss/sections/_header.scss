@@ -114,17 +114,25 @@ header {
 
     .mobile-account-buttons {
         grid-area: mobile;
-        
+
+
+
+
 
         .dropdown-mobile {
             position: relative;
             border: none;
+            left: 50%;
+            z-index: 1;
+
 
 
             .dropdown-toggle-mobile {
                 background: none;
                 border: none;
                 cursor: pointer;
+
+
             }
 
             .dropdown-menu-mobile {
@@ -136,6 +144,8 @@ header {
                 left: 0;
                 min-width: 2rem;
 
+
+
                 .dropdown-item-mobile {
                     display: block;
                     padding: .3rem 2rem;
@@ -143,6 +153,7 @@ header {
                     color: white;
                     transition: background-color 0.3s;
                     margin-top: .5rem;
+
 
                     &:hover {
                         color: white;
@@ -160,6 +171,27 @@ header {
 
                 .dropdown-divider-mobile {
                     margin: 4px 0;
+                }
+
+                .nav-links-mobile {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 0.5rem;
+                    border-top: 1px solid black;
+                    border-bottom: 1px solid black;
+                }
+
+                .btn-switch-mobile {
+                    margin-top: .5rem;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .end-line {
+                    border-top: 1px solid black;
+                    margin-top: .5rem;
                 }
             }
 

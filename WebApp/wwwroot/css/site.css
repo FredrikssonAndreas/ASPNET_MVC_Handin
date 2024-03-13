@@ -333,6 +333,68 @@ a:hover {
   border-radius: 50%;
 }
 
+.btn-switch-mobile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-switch-mobile label {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  color: #33354D;
+  font-weight: 600 !important;
+}
+.btn-switch-mobile .switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 25px;
+}
+.btn-switch-mobile .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.btn-switch-mobile .switch input:checked + .slider {
+  background-color: #6366F1;
+}
+.btn-switch-mobile .switch input:focus + .slider {
+  box-shadow: 0 0 1px #6366F1;
+}
+.btn-switch-mobile .switch input:checked + .slider:before {
+  transform: translateX(20px);
+  background-color: #FFFFFF;
+}
+.btn-switch-mobile .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #565973;
+  transition: 0.4s;
+}
+.btn-switch-mobile .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 2.7px;
+  background-color: #FFFFFF;
+  transition: 0.4s;
+}
+.btn-switch-mobile .switch .slider.round {
+  border-radius: 34px;
+}
+.btn-switch-mobile .switch .slider.round:before {
+  border-radius: 50%;
+}
+
 .btn-social {
   line-height: 160%;
   font-weight: 400;
@@ -459,6 +521,8 @@ header .mobile-account-buttons {
 header .mobile-account-buttons .dropdown-mobile {
   position: relative;
   border: none;
+  left: 50%;
+  z-index: 1;
 }
 header .mobile-account-buttons .dropdown-mobile .dropdown-toggle-mobile {
   background: none;
@@ -494,6 +558,24 @@ header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .dropdown-
 }
 header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .dropdown-divider-mobile {
   margin: 4px 0;
+}
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .nav-links-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .btn-switch-mobile {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .end-line {
+  border-top: 1px solid black;
+  margin-top: 0.5rem;
 }
 header .mobile-account-buttons .dropdown-mobile.open .dropdown-menu {
   display: block;

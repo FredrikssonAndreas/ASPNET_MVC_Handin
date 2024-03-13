@@ -7,5 +7,5 @@ function toggleDropdown() {
 
 function toggleDropdownMobile() {
     var dropdownMenuMobile = document.getElementById("profileDropdownMenuMobile");
-    dropdownMenu.style.display = dropdownMenuMobile.style.display === "block" ? "none" : "block";
+    dropdownMenuMobile.style.display = dropdownMenuMobile.style.display === "block" ? "none" : "block";
 }
