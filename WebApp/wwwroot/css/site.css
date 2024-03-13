@@ -411,30 +411,92 @@ header .container .account-buttons {
     display: flex;
   }
 }
-header .container .btn-mobile {
-  grid-area: mobile;
+header .container .account-buttons .dropdown {
+  position: relative;
+  border: none;
+}
+header .container .account-buttons .dropdown .dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+header .container .account-buttons .dropdown .dropdown-menu {
+  background: none;
+  border: none;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 2rem;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-item {
+  display: block;
+  padding: 0.3rem 2rem;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s;
+  margin-top: 0.5rem;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-item:hover {
+  color: white;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-item.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-item i {
+  margin-right: 0.5rem;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-divider {
+  margin: 4px 0;
+}
+header .container .account-buttons .dropdown.open .dropdown-menu {
   display: block;
 }
-@media (min-width: 992px) {
-  header .container .btn-mobile {
-    display: none;
-  }
+header .mobile-account-buttons {
+  grid-area: mobile;
 }
-header .container .btn-mobile .btn {
-  font-size: 1.4rem;
+header .mobile-account-buttons .dropdown-mobile {
+  position: relative;
+  border: none;
 }
-header #mobile-menu {
+header .mobile-account-buttons .dropdown-mobile .dropdown-toggle-mobile {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile {
+  background: none;
+  border: none;
   display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 2rem;
 }
-@media (min-width: 992px) {
-  header #mobile-menu {
-    display: none;
-  }
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .dropdown-item-mobile {
+  display: block;
+  padding: 0.3rem 2rem;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s;
+  margin-top: 0.5rem;
 }
-header #mobile-menu[aria-expanded=true] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .dropdown-item-mobile:hover {
+  color: white;
+}
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .dropdown-item-mobile.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .dropdown-item-mobile i {
+  margin-right: 0.5rem;
+}
+header .mobile-account-buttons .dropdown-mobile .dropdown-menu-mobile .dropdown-divider-mobile {
+  margin: 4px 0;
+}
+header .mobile-account-buttons .dropdown-mobile.open .dropdown-menu {
+  display: block;
 }
 
 footer {
@@ -1062,6 +1124,7 @@ footer .container .social-media a:hover {
     height: 90vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
     margin-right: 10rem;
+    border-bottom: none;
   }
 }
 #account .container .account-nav .nav-image {
@@ -1275,6 +1338,7 @@ footer .container .social-media a:hover {
     height: 90vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
     margin-right: 10rem;
+    border-bottom: none;
   }
 }
 #security .container .account-nav .nav-image {
@@ -1341,6 +1405,24 @@ footer .container .social-media a:hover {
 #security .container .account-security .security h3 {
   color: #6366F1;
 }
+#security .container .account-security .security .alert {
+  background-color: rgba(239, 68, 68, 0.3215686275);
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
+}
+#security .container .account-security .security .success {
+  background-color: lightgreen;
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
+}
 #security .container .account-security .security .security-content {
   justify-content: center;
   display: grid;
@@ -1389,6 +1471,24 @@ footer .container .social-media a:hover {
 }
 #security .container .account-security .account-delete {
   padding-top: 2rem;
+}
+#security .container .account-security .account-delete .delete .alert {
+  background-color: rgba(239, 68, 68, 0.3215686275);
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
+}
+#security .container .account-security .account-delete .delete .success {
+  background-color: lightgreen;
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
 }
 #security .container .account-security .account-delete .delete h4 {
   color: #6366F1;
@@ -1453,6 +1553,7 @@ footer .container .social-media a:hover {
     height: 90vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
     margin-right: 10rem;
+    border-bottom: none;
   }
 }
 #saved-items .container .account-nav .nav-image {

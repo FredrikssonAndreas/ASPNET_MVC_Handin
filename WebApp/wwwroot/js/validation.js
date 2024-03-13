@@ -36,8 +36,9 @@ const emailValidator = (element) => {
 
 
 const passwordValidator = (element) => {
+
     if (element.dataset.valEqualtoOther !== undefined) {
-        let password = document.getElementsByName(element.dataset.valEqualtoOther.replace('*', 'Form'))[0].value
+        let password = document.getElementsByName(element.dataset.valEqualtoOther.replace('*', element.id.split('_')[0]))[0].value
 
         if (element.value === password)
             formErrorHandler(element, true)
@@ -60,8 +61,9 @@ const checkboxValidator = (element) => {
 let forms = document.querySelectorAll('form')
 let inputs = forms[0].querySelectorAll('input')
 
-inputs.forEach(input => {
+console.log(inputs)
 
+inputs.forEach(input => {
     if (input.dataset.val === 'true') {
 
         if (input.type === 'checkbox') {
@@ -85,6 +87,7 @@ inputs.forEach(input => {
 
                     case 'password':
                         passwordValidator(e.target)
+                        
                         break;
 
                     case 'textarea':
@@ -96,3 +99,4 @@ inputs.forEach(input => {
         }
     }
 })
+

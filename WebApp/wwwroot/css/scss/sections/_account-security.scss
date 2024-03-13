@@ -21,6 +21,7 @@
                 height: 90vh;
                 border-right: 1px solid rgb(147, 151, 173, 0.3);
                 margin-right: 10rem;
+                border-bottom: none;
             }
 
 
@@ -110,6 +111,26 @@
                     color: #6366F1;
                 }
 
+                .alert {
+                    background-color: #ef444452;
+                    opacity: 0.8;
+                    color: $gray-900;
+                    margin: 0;
+                    max-width: 70%;
+                    text-align: center;
+                    font-weight: 700;
+                }
+
+                .success {
+                    background-color: lightgreen;
+                    opacity: 0.8;
+                    color: $gray-900;
+                    margin: 0;
+                    max-width: 70%;
+                    text-align: center;
+                    font-weight: 700;
+                }
+
                 .security-content {
                     justify-content: center;
                     display: grid;
@@ -181,6 +202,25 @@
 
                 .delete {
 
+                    .alert {
+                        background-color: #ef444452;
+                        opacity: 0.8;
+                        color: $gray-900;
+                        margin: 0;
+                        max-width: 70%;
+                        text-align: center;
+                        font-weight: 700;
+                    }
+
+                    .success {
+                        background-color: lightgreen;
+                        opacity: 0.8;
+                        color: $gray-900;
+                        margin: 0;
+                        max-width: 70%;
+                        text-align: center;
+                        font-weight: 700;
+                    }
 
                     h4 {
                         color: #6366F1

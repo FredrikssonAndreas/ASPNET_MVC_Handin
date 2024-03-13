@@ -56,37 +56,118 @@ header {
             @include lg {
                 display: flex;
             }
-            .profile-avatar{
-                
-            }
-        }
 
-        .btn-mobile {
-            grid-area: mobile;
-            display: block;
+            .dropdown {
+                position: relative;
+                border: none;
 
-            @include lg {
-                display: none;
-            }
+                .dropdown-toggle {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                }
 
-            .btn {
-                font-size: 1.4rem;
+                .dropdown-menu {
+                    background: none;
+                    border: none;
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    min-width: 2rem;
+
+                    .dropdown-item {
+                        display: block;
+                        padding: .3rem 2rem;
+                        text-decoration: none;
+                        color: white;
+                        transition: background-color 0.3s;
+                        margin-top: .5rem;
+
+                        &:hover {
+                            color: white;
+                        }
+
+                        &.disabled {
+                            pointer-events: none;
+                            opacity: 0.5;
+                        }
+
+                        i {
+                            margin-right: .5rem;
+                        }
+                    }
+
+                    .dropdown-divider {
+                        margin: 4px 0;
+                    }
+                }
+
+                &.open {
+                    .dropdown-menu {
+                        display: block;
+                    }
+                }
             }
         }
     }
 
+    .mobile-account-buttons {
+        grid-area: mobile;
+        
 
-    #mobile-menu {
-        display: none;
+        .dropdown-mobile {
+            position: relative;
+            border: none;
 
-        @include lg {
-            display: none;
-        }
 
-        &[aria-expanded="true"] {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            .dropdown-toggle-mobile {
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropdown-menu-mobile {
+                background: none;
+                border: none;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                min-width: 2rem;
+
+                .dropdown-item-mobile {
+                    display: block;
+                    padding: .3rem 2rem;
+                    text-decoration: none;
+                    color: white;
+                    transition: background-color 0.3s;
+                    margin-top: .5rem;
+
+                    &:hover {
+                        color: white;
+                    }
+
+                    &.disabled {
+                        pointer-events: none;
+                        opacity: 0.5;
+                    }
+
+                    i {
+                        margin-right: .5rem;
+                    }
+                }
+
+                .dropdown-divider-mobile {
+                    margin: 4px 0;
+                }
+            }
+
+            &.open {
+                .dropdown-menu {
+                    display: block;
+                }
+            }
         }
     }
 }

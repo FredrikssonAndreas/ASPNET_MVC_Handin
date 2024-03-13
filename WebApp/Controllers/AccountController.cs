@@ -154,16 +154,24 @@ public class AccountController : Controller
 			
 			if (userEntity != null)
 			{
+				if (String.IsNullOrEmpty(viewmodel.AccountSecurity.CurrentPassword) || String.IsNullOrEmpty(viewmodel.AccountSecurity.NewPassword))
+				{
+					TempData["PasswordError"] = "Something went wrong, please check your passwords";
+					return RedirectToAction("Security", "Account");
+				}
 				var passwordChange = await _userManager.ChangePasswordAsync(userEntity, viewmodel.AccountSecurity.CurrentPassword, viewmodel.AccountSecurity.NewPassword);
-				
+
 				if (passwordChange.Succeeded)
 				{
 					var result = await _userManager.UpdateAsync(userEntity);
 					if (result.Succeeded)
 					{
+						TempData["PasswordSuccess"] = "Password was succesfully changed";
 						return RedirectToAction("Security", "Account");
 					}
 				}
+				TempData["PasswordError"] = "Something went wrong, please check your passwords";
+				return RedirectToAction("Security", "Account");
 			}			
 		}
         return RedirectToAction("Index", "Account");
@@ -188,6 +196,7 @@ public class AccountController : Controller
 				}
 				else
 				{
+					TempData["ErrorMessage"] = "You need to check the box to delete your account";
 					return RedirectToAction("Security", "Account");
 				}
 			}
