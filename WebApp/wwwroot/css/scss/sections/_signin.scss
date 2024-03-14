@@ -108,3 +108,134 @@
         }
     }
 }
+
+.dark-mode {
+    #signin {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        background-color: $gray-900;
+
+        .container {
+            display: flex;
+            justify-content: center;
+
+            .signin-form {
+                display: flex;
+                flex-direction: column;
+
+                @include xl {
+                    width: 50%;
+                }
+
+                p {
+                    color: $gray-500;
+                }
+
+                h1 {
+                    @include h3;
+                    color: $gray-300;
+
+                    @include lg {
+                        @include h1;
+                        color: $gray-300;
+                    }
+                }
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+
+
+                    .input-group {
+                        display: flex;
+                        flex-direction: column;
+                        color: $gray-500;
+                        font-weight: 700;
+
+                        span {
+
+                            &.field-validation-error {
+                                color: $danger;
+                                font-weight: 500;
+                                opacity: 0.7;
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                            }
+                        }
+
+                        input {
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
+
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
+                        }
+
+                        #form-email {
+                        }
+
+                        #form-password {
+                        }
+                    }
+
+                    .checkbox-group {
+                        color: $gray-500;
+
+                        #form-remember {
+                        }
+                    }
+                }
+
+                button {
+                    margin-top: 1rem;
+                    margin-bottom: .5rem;
+                }
+
+                .alert {
+                    background-color: #ef4444c2;
+                    text-align: center;
+                    font-weight: 700;
+                    color: $gray-900;
+                }
+
+                .get-password {
+                    margin-top: 1rem;
+                    text-align: center;
+                    font-weight: 600;
+                }
+
+                .social-login {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 1rem;
+
+
+                    h2 {
+                        text-align: center;
+                        color: $gray-900;
+                    }
+
+                    .social-buttons {
+                        display: flex;
+                        justify-content: center;
+                        gap: 1.5rem;
+
+                        a {
+                            background-color: black;
+                            color: $gray-500;
+
+                            &:hover {
+                                background-color: $theme;
+                                color: $gray-300;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

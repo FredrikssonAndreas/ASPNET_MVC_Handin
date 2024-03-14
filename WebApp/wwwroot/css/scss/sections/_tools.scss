@@ -34,3 +34,50 @@
         }
     }
 }
+
+.dark-mode {
+    #tools {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        background-color: black;
+
+
+        .section-tools {
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+
+                h1 {
+                    color: $gray-300;
+                }
+
+                p {
+                    color: $gray-500;
+                }
+
+                .tools-grid {
+                    padding: 3rem;
+                    display: grid;
+                    text-align: left;
+                    gap: 3rem;
+                    grid-template-columns: repeat(2, 1fr);
+
+                    @include lg {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+
+
+
+                    .tools-box {
+                        img {
+                            padding-bottom: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
