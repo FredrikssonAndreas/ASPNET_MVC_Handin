@@ -1007,12 +1007,13 @@
 
 
 								&.field-validation-error {
-									color: $danger;
 									font-weight: 500;
 									opacity: 0.7;
 									position: absolute;
 									top: 0;
 									right: 0;
+									@include text-s;
+									color: $danger !important;
 								}
 							}
 
@@ -1100,12 +1101,13 @@
 							span {
 
 								&.field-validation-error {
-									color: $danger;
 									font-weight: 500;
 									opacity: 0.7;
 									position: absolute;
 									top: 0;
 									right: 0;
+									@include text-s;
+									color: $danger !important;
 								}
 							}
 
