@@ -13,28 +13,28 @@
 				<form asp-action="Subscribe" asp-controller="Home" method="post" novalidate>
 					<div class="checkboxes">
 						<div class="checkbox">
-							<input asp-for="SubscribeEmail.DailyNewsletter" />
-							<label asp-for="SubscribeEmail.DailyNewsletter"></label>
+							<input asp-for="SubscribeEmail!.DailyNewsletter" />
+							<label asp-for="SubscribeEmail!.DailyNewsletter"></label>
 						</div>
 						<div class="checkbox">
-							<input asp-for="SubscribeEmail.AdvertisingUpdates" />
-							<label asp-for="SubscribeEmail.AdvertisingUpdates"></label>
+							<input asp-for="SubscribeEmail!.AdvertisingUpdates" />
+							<label asp-for="SubscribeEmail!.AdvertisingUpdates"></label>
 						</div>
 						<div class="checkbox">
-							<input asp-for="SubscribeEmail.WeekinReview" />
-							<label asp-for="SubscribeEmail.WeekinReview"></label>
+							<input asp-for="SubscribeEmail!.WeekinReview" />
+							<label asp-for="SubscribeEmail!.WeekinReview"></label>
 						</div>
 						<div class="checkbox">
-							<input asp-for="SubscribeEmail.EventUpdates" />
-							<label asp-for="SubscribeEmail.EventUpdates"></label>
+							<input asp-for="SubscribeEmail!.EventUpdates" />
+							<label asp-for="SubscribeEmail!.EventUpdates"></label>
 						</div>
 						<div class="checkbox">
-							<input asp-for="SubscribeEmail.StartupsWeekly" />
-							<label asp-for="SubscribeEmail.StartupsWeekly"></label>
+							<input asp-for="SubscribeEmail!.StartupsWeekly" />
+							<label asp-for="SubscribeEmail!.StartupsWeekly"></label>
 						</div>
 						<div class="checkbox">
-							<input asp-for="SubscribeEmail.Podcasts" />
-							<label asp-for="SubscribeEmail.Podcasts"></label>
+							<input asp-for="SubscribeEmail!.Podcasts" />
+							<label asp-for="SubscribeEmail!.Podcasts"></label>
 						</div>
 					</div>
 
@@ -42,8 +42,8 @@
 						<div class="input-terms">
 							<i class="fa-light fa-envelope"></i>
 							<div id="form-email" class="input-group">
-								<span asp-validation-for="SubscribeEmail.Email"></span>
-								<input asp-for="SubscribeEmail.Email" />
+								<span asp-validation-for="SubscribeEmail!.Email"></span>
+								<input asp-for="SubscribeEmail!.Email" />
 							</div>
 							<p class="gray-600 text-s">
 								* Yes, I agree to the <a href="#">terms</a> and <a href="#">

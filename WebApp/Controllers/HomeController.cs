@@ -43,6 +43,7 @@ public class HomeController(HttpClient httpClient) : Controller
         return View(viewModel);
     }
 
+	
     [HttpPost]
     public IActionResult Contact(ContactViewModel viewmodel)
     {
@@ -55,9 +56,19 @@ public class HomeController(HttpClient httpClient) : Controller
     }
 
 
+	[HttpGet]
+	public IActionResult Subscribe()
+	{
+		var viewModel = new SubscribeViewModel();
+		return View(viewModel);
+	}
+
+
+	
 	[HttpPost]
 	public async Task<IActionResult> Subscribe(SubscribeViewModel viewModel)
 	{
+		
 		if (ModelState.IsValid)
 		{
 			try
@@ -84,10 +95,12 @@ public class HomeController(HttpClient httpClient) : Controller
 						if (response.IsSuccessStatusCode)
 						{
 							ViewData["Status"] = "Success";
+							
 						}
 						else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
 						{
 							ViewData["Status"] = "AlreadyExists.";
+							
 						}
 					}					
 				}
@@ -95,14 +108,16 @@ public class HomeController(HttpClient httpClient) : Controller
 			catch
 			{
 				ViewData["Status"] = "ConnectionFailed";
+				
 			}
 		}
 		else
 		{
 			ViewData["Status"] = "Failed";
+			
 		}
-		return RedirectToAction("Index");
-	}
+		return RedirectToAction("Index", "Home");
+	}	
 }
 
   
