@@ -18,7 +18,9 @@ public class AuthController : Controller
 		_signInManager = signInManager;
 	}
 
+	[Route("/signup")]
 	[HttpGet]
+	
 	public IActionResult SignUp()
 	{
 		var viewModel = new SignUpViewModel();
@@ -54,6 +56,7 @@ public class AuthController : Controller
 		return View(viewmodel);
 	}
 
+	[Route("/signin")]
 	[HttpGet]
 	public IActionResult SignIn()
 	{

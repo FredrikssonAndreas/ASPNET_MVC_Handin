@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
+builder.Services.AddHttpClient();
 
 builder.Services.AddDefaultIdentity<UserEntity>(x =>
 {
@@ -14,6 +15,18 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
     x.Password.RequiredLength = 8;
 
 }).AddEntityFrameworkStores<DataContext>();
+
+builder.Services.ConfigureApplicationCookie(x =>
+{
+    x.LoginPath = "/signin";
+    x.LogoutPath = "/index";
+    x.AccessDeniedPath = "/signin";
+
+    x.Cookie.HttpOnly = true;
+    x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    x.SlidingExpiration = true;
+});
 
 
 builder.Services.AddAuthentication().AddFacebook(x =>

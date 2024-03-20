@@ -1,60 +1,89 @@
 ﻿@model SubscribeViewModel;
 
 <section id="subscribe">
-    <div class="section-subscribe">
-        <div class="container">
-            <div class="heading">
-                <h1 class="gray-900">Don't Want to Miss Anything?</h1>
-                <img src="/images/subscribe-arrows.svg" alt="subscribe arrows">
-            </div>
-            <div class="newsletter">
-                <h2 class="h5">Sign up for Newsletters</h2>
+	<div class="section-subscribe">
+		<div class="container">
+			<div class="heading">
+				<h1 class="gray-900">Don't Want to Miss Anything?</h1>
+				<img src="/images/subscribe-arrows.svg" alt="subscribe arrows">
+			</div>
+			<div class="newsletter">
+				<h2 class="h5">Sign up for Newsletters</h2>
 
-                <div class="checkboxes">
-                    <div class="checkbox">
-                        <input type="checkbox" name="daily">
-                        <p class="gray-700 text-s">Daily Newsletter</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="advertising">
-                        <p class="gray-700 text-s">Advertising Updates</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="week">
-                        <p class="gray-700 text-s">Week in Review</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="event">
-                        <p class="gray-700 text-s">Event Updates</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="startup">
-                        <p class="gray-700 text-s">Startups Weekly</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="podcast">
-                        <p class="gray-700 text-s">Podcast</p>
-                    </div>
-                </div>
-            </div>
-            <div class="subscribe-form">               
-                <div class="input-terms">
-                    <i class="fa-light fa-envelope"></i>
-                    <form id="form-email" class="input-group">                       
-                        <span asp-validation-for="SubscribeEmail!.Email"></span>
-                        <input asp-for="SubscribeEmail!.Email" />
-                    </form>
-                    <p class="gray-600 text-s">
-                        * Yes, I agree to the <a href="#">terms</a> and <a href="#">
-                            privacy
-                            policy.
-                        </a>
-                    </p>
-                </div>
-                <button class="btn-theme text-s">Subscribe</button>
-            </div>
-        </div>
-    </div>
+				<form asp-action="Subscribe" asp-controller="Home" method="post" novalidate>
+					<div class="checkboxes">
+						<div class="checkbox">
+							<input asp-for="SubscribeEmail.DailyNewsletter" />
+							<label asp-for="SubscribeEmail.DailyNewsletter"></label>
+						</div>
+						<div class="checkbox">
+							<input asp-for="SubscribeEmail.AdvertisingUpdates" />
+							<label asp-for="SubscribeEmail.AdvertisingUpdates"></label>
+						</div>
+						<div class="checkbox">
+							<input asp-for="SubscribeEmail.WeekinReview" />
+							<label asp-for="SubscribeEmail.WeekinReview"></label>
+						</div>
+						<div class="checkbox">
+							<input asp-for="SubscribeEmail.EventUpdates" />
+							<label asp-for="SubscribeEmail.EventUpdates"></label>
+						</div>
+						<div class="checkbox">
+							<input asp-for="SubscribeEmail.StartupsWeekly" />
+							<label asp-for="SubscribeEmail.StartupsWeekly"></label>
+						</div>
+						<div class="checkbox">
+							<input asp-for="SubscribeEmail.Podcasts" />
+							<label asp-for="SubscribeEmail.Podcasts"></label>
+						</div>
+					</div>
+
+					<div class="subscribe-form">
+						<div class="input-terms">
+							<i class="fa-light fa-envelope"></i>
+							<div id="form-email" class="input-group">
+								<span asp-validation-for="SubscribeEmail.Email"></span>
+								<input asp-for="SubscribeEmail.Email" />
+							</div>
+							<p class="gray-600 text-s">
+								* Yes, I agree to the <a href="#">terms</a> and <a href="#">
+									privacy
+									policy.
+								</a>
+							</p>
+						</div>
+						<button class="btn-theme text-s" type="submit">Subscribe</button>
+					</div>
+				</form>
+				<span class="information">
+					@if (ViewData["Status"]?.ToString() == "Created")
+					{
+						<span class="alert alert-success">
+							You have been subscribed
+						</span>
+					}
+					else if (ViewData["Status"]?.ToString() == "AlreadyExists")
+					{
+						<span class="alert alert-warning">
+							You have already subscribed
+						</span>
+					}
+					else if (ViewData["Status"]?.ToString() == "Invalid")
+					{
+						<span class="alert alert-danger">
+							You must enter an valid email address
+						</span>
+					}
+					else if (ViewData["Status"]?.ToString() == "ConnectionFailed")
+					{
+						<span class="alert alert-danger">
+							Unable to contact the server. Please try later.
+						</span>
+					}
+				</span>
+			</div>
+		</div>
+	</div>
 </section>
 
 @await Html.PartialAsync("~/Views/Shared/_validationScriptPartial.cshtml")

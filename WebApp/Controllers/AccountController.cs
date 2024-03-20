@@ -1,12 +1,15 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.ViewModels;
 
 
 namespace WebApp.Controllers;
+
+[Authorize]
 
 public class AccountController : Controller
 {
@@ -226,7 +229,7 @@ public class AccountController : Controller
 	}
 
 
-
+	[Route("/index")]
 	[HttpGet]
 
 	public async Task<IActionResult> LogOut()
