@@ -1,0 +1,386 @@
+#courses {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    .container {
+
+
+
+        .nav-links {
+
+            a {
+                color: #9397ad;
+                text-decoration: none;
+            }
+
+            .home {
+
+                i {
+                    margin-right: .2rem;
+                }
+            }
+
+            .navcourses {
+                color: $theme;
+            }
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+
+            h1 {
+            }
+
+            .search {
+
+
+
+                select {
+                    padding: .5rem;
+                }
+
+                input {
+                    position: relative;
+                    padding: .5rem;
+                    margin: 0;
+                    line-height: 0;
+                }
+
+                i {
+                    position: absolute;
+                    right: 16.5%;
+                    top: 18%;
+                }
+            }
+        }
+
+        .course-grid {
+
+
+            .course-item {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+
+
+                @include lg {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                }
+
+                @include xxl {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+
+
+                .course-box {
+                    border-radius: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    
+
+
+                    &:hover {
+                        transition: all 0.15s ease-in-out;
+                        cursor: pointer;
+                        @include shadow-l;
+                    }
+
+
+                    .image-and-best {
+                        position: relative;
+
+                        .main-image {
+                            width: 100%;
+                            height: auto;
+                        }
+
+                        article {
+
+                            .best {
+                                position: absolute;
+                                top: 1rem;
+                                left: 1rem;
+                            }
+                        }
+                    }
+
+                    h2 {
+                        padding: 1rem;
+                        max-width: 90%;
+                    }
+
+                    p {
+                        padding-left: 1rem;
+                    }
+
+                    .price-and-discount {
+                        display: flex;
+                        font-weight: 700;
+
+                        .discount {
+                            margin-right: 1rem;
+                            font-size: 18px;
+                            color: $danger;
+                        }
+
+                        .price-crossed {
+                            font-size: 16px;
+                            text-decoration: line-through;
+                        }
+
+                        .price {
+                        }
+                    }
+
+                    .end-line {
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        border-top: 1px solid $gray-500;
+                        padding-bottom: 1.5rem;
+                        margin-left: 1rem;
+                        width: 90%;
+                    }
+
+                    .course-footer {
+                        display: flex;
+                        align-items: center;
+                        padding-left: 1rem;
+                        padding-bottom: 1rem;
+
+
+
+                        .time {
+                            display: flex;
+                            align-items: center;
+
+                            i {
+                                margin-right: .3rem;
+                            }
+
+                            p {
+                                margin: 0;
+                                margin-right: 2rem;
+                                padding: 0;
+                            }
+                        }
+                    }
+
+                    .likes {
+                        display: flex;
+                        align-items: center;
+
+                        i {
+                            margin-right: .3rem;
+                        }
+
+                        p {
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dark-mode {
+    #courses {
+        padding-top: 2rem;
+        background-color: $gray-900;
+
+        .container {
+
+
+
+            .nav-links {
+
+                a {
+                    color: #9397ad;
+                    text-decoration: none;
+                }
+
+                .home {
+
+                    i {
+                        margin-right: .2rem;
+                    }
+                }
+
+                .navcourses {
+                    color: $theme;
+                }
+            }
+
+            .heading {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+
+                h1 {
+                    color: $gray-300;
+                }
+
+                .search {
+
+
+
+                    select {
+                        padding: .5rem;
+                    }
+
+                    input {
+                        position: relative;
+                        padding: .5rem;
+                        margin: 0;
+                        line-height: 0;
+                    }
+
+                    i {
+                        position: absolute;
+                        right: 16.5%;
+                        top: 18%;
+                    }
+                }
+            }
+
+            .course-grid {
+
+
+                .course-item {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+
+
+                    @include lg {
+                        grid-template-columns: 1fr 1fr;
+                        gap: 1rem;
+                    }
+
+                    @include xxl {
+                        grid-template-columns: 1fr 1fr 1fr;
+                    }
+
+
+
+                    .course-box {
+                        border-radius: 1rem;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: black;
+
+
+                        &:hover {
+                            transition: all 0.15s ease-in-out;
+                            cursor: pointer;
+                            @include theme-shadow;
+                        }
+
+
+                        .image-and-best {
+                            position: relative;
+
+                            .main-image {
+                                width: 100%;
+                                height: auto;
+                            }
+
+                            article {
+
+                                .best {
+                                    position: absolute;
+                                    top: 1rem;
+                                    left: 1rem;
+                                }
+                            }
+                        }
+
+                        h2 {
+                            padding: 1rem;
+                            max-width: 90%;
+                            color: $gray-300;
+                        }
+
+                        p {
+                            padding-left: 1rem;
+                            color: $gray-500;
+                        }
+
+                        .price-and-discount {
+                            display: flex;
+                            font-weight: 700;
+
+                            .discount {
+                                margin-right: 1rem;
+                                font-size: 18px;
+                                color: $danger;
+                            }
+
+                            .price-crossed {
+                                font-size: 16px;
+                                text-decoration: line-through;
+                            }
+
+                            .price {
+                            }
+                        }
+
+                        .end-line {
+                            display: flex;
+                            justify-content: center;
+                            align-content: center;
+                            border-top: 1px solid $gray-300;
+                            padding-bottom: 1.5rem;
+                            margin-left: 1rem;
+                            width: 90%;
+                        }
+
+                        .course-footer {
+                            display: flex;
+                            align-items: center;
+                            padding-left: 1rem;
+                            padding-bottom: 1rem;
+
+
+
+                            .time {
+                                display: flex;
+                                align-items: center;
+
+                                i {
+                                    margin-right: .3rem;
+                                }
+
+                                p {
+                                    margin: 0;
+                                    margin-right: 2rem;
+                                    padding: 0;
+                                }
+                            }
+                        }
+
+                        .likes {
+                            display: flex;
+                            align-items: center;
+
+                            i {
+                                margin-right: .3rem;
+                            }
+
+                            p {
+                                margin: 0;
+                                padding: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
