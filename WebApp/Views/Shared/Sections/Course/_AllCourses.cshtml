@@ -1,0 +1,73 @@
+﻿@model CourseViewModel;
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+
+<section id="courses">
+    <div class="container">
+        <div class="nav-links">
+            <a class="home" asp-controller="Home" asp-action="Index"><i class="fa-light fa-house"></i>Home</a>
+            <span>>></span>
+            <a class="contact" asp-controller="Course" asp-action="Index">Courses</a>
+        </div>
+        <div class="heading">
+            <h1>@Model.Title</h1>
+            <div class="search">
+                <select>
+                    <option value="">All Categories</option>
+					<option value="1">Tech</option>
+					<option value="2">Production</option>
+					<option value="3">Code</option>
+					<option value="4">Development</option>
+                </select>
+                <input type="text" placeholder="Search courses" />
+                <i class="fa-regular fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <div class="course-grid">
+            @foreach (var course in Model.Courses)
+            {
+                <div class="course-item">                    
+                    <img src=@course.CoursePictureUrl />
+                    <h2>@course.Title</h2>
+                    <p class="text-s">By @course.Author</p>
+                    <p class="price">$ @course.Price</p>
+                    <div class="footer">
+                        <div class="time">
+                            <i class="fa-regular fa-clock"></i>
+                            <p class="text-s">@course.Hours hours</p>
+                        </div>
+                        <div class="likes">
+                            <i class="fa-light fa-thumbs-up"></i>
+                            <p class="text-s">@course.LikesInPercent% (@course.LikesInNumbers K)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

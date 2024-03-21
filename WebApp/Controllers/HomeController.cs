@@ -90,7 +90,7 @@ public class HomeController(HttpClient httpClient) : Controller
 					if (json != null)
 					{
 						var content = new StringContent(json, Encoding.UTF8, "application/json");
-						var response = await _httpClient.PostAsync("https://localhost:7160/api/subscriber", content);
+						var response = await _httpClient.PostAsync("https://localhost:7160/api/subscriber?key=ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi", content);
 
 						if (response.IsSuccessStatusCode)
 						{
