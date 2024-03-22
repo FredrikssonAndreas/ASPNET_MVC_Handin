@@ -76,7 +76,7 @@ header {
                     display: none;
                     position: absolute;
                     top: 100%;
-                    left: 0;
+                    left: -100%;
                     min-width: 2rem;
 
                     .dropdown-item {
@@ -144,7 +144,7 @@ header {
                     display: none;
                     position: absolute;
                     top: 100%;
-                    left: 0;
+                    left: -300%;
                     min-width: 2rem;
 
 
@@ -306,16 +306,17 @@ header {
                         display: none;
                         position: absolute;
                         top: 100%;
-                        left: 0;
+                        left: -100%;
                         min-width: 2rem;
 
                         .dropdown-item {
                             display: block;
                             padding: .3rem 2rem;
                             text-decoration: none;
-                            color: white;
+                            color: $gray-300;
                             transition: background-color 0.3s;
                             margin-top: .5rem;
+                            
 
                             &:hover {
                                 color: white;
@@ -368,14 +369,21 @@ header {
                         cursor: pointer;
                     }
 
+
                     .dropdown-menu-mobile {
-                        background: none;
+                        background: black;
                         border: none;
                         display: none;
                         position: absolute;
                         top: 100%;
-                        left: 0;
+                        left:-300%;
                         min-width: 2rem;
+                       
+                        
+
+                        a{
+                            margin-bottom: .5rem;
+                        }
 
 
 
@@ -386,6 +394,8 @@ header {
                             color: white;
                             transition: background-color 0.3s;
                             margin-top: .5rem;
+                            justify-content: center;
+
 
 
                             &:hover {
@@ -412,18 +422,28 @@ header {
                             justify-content: center;
                             align-items: center;
                             margin-top: 0.5rem;
-                            border-top: 1px solid black;
-                            border-bottom: 1px solid black;
+                            border-top: 1px solid $gray-500;
+                            border-bottom: 1px solid $gray-500;
+
+
+                            a {
+                                color: $gray-500;
+
+                                &:hover {
+                                    color: $theme;
+                                }
+                            }
                         }
 
                         .btn-switch-mobile {
                             margin-top: .5rem;
                             display: flex;
                             justify-content: center;
+                            color: $gray-500;
                         }
 
                         .end-line {
-                            border-top: 1px solid black;
+                            border-top: 1px solid $gray-500;
                             margin-top: .5rem;
                         }
                     }

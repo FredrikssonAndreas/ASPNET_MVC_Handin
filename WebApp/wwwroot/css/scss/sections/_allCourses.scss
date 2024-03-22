@@ -5,7 +5,6 @@
     .container {
 
 
-
         .nav-links {
 
             a {
@@ -34,7 +33,6 @@
             }
 
             .search {
-
 
 
                 select {
@@ -75,13 +73,12 @@
                 }
 
 
-
                 .course-box {
-                    border-radius: 1rem;
                     display: flex;
                     flex-direction: column;
-                    
-
+                    border-bottom-left-radius: 0.9rem !important;
+                    border-bottom-right-radius: 0.9rem !important;
+                    overflow: hidden;
 
                     &:hover {
                         transition: all 0.15s ease-in-out;
@@ -96,6 +93,26 @@
                         .main-image {
                             width: 100%;
                             height: auto;
+                            border-top-left-radius: 0.9rem !important;
+                            border-top-right-radius: 0.9rem !important;
+                            transition: transform 0.3s ease-in-out;
+                        }
+
+                        .bookmark {
+                            background-color: white;
+                            color: $gray-900;
+                            position: absolute;
+                            top: 1rem;
+                            right: 1rem;
+                            border-radius: 4rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: none;
+
+                            &:hover {
+                                background-color: $theme;
+                                color: white;
+                            }
                         }
 
                         article {
@@ -108,9 +125,20 @@
                         }
                     }
 
+                    &:hover .image-and-best {
+                        .main-image {
+                            transform: scale(1.1);
+                        }
+                    }
+
+
                     h2 {
                         padding: 1rem;
-                        max-width: 90%;
+                        max-width: 80%;
+
+                        @include lg {
+                            max-width: 90%;
+                        }
                     }
 
                     p {
@@ -151,7 +179,6 @@
                         align-items: center;
                         padding-left: 1rem;
                         padding-bottom: 1rem;
-
 
 
                         .time {
@@ -197,7 +224,6 @@
         .container {
 
 
-
             .nav-links {
 
                 a {
@@ -227,7 +253,6 @@
                 }
 
                 .search {
-
 
 
                     select {
@@ -268,20 +293,17 @@
                     }
 
 
-
                     .course-box {
-                        border-radius: 1rem;
                         display: flex;
                         flex-direction: column;
                         background-color: black;
-
+                        overflow: hidden;
+                        border-bottom-left-radius: 15px !important;
+                        border-bottom-right-radius: 15px !important;
 
                         &:hover {
-                            transition: all 0.15s ease-in-out;
                             cursor: pointer;
-                            @include theme-shadow;
                         }
-
 
                         .image-and-best {
                             position: relative;
@@ -289,10 +311,29 @@
                             .main-image {
                                 width: 100%;
                                 height: auto;
+                                border-top-left-radius: 0.9rem !important;
+                                border-top-right-radius: 0.9rem !important;
+                                transition: transform 0.3s ease-in-out;
+                            }
+
+                            .bookmark {
+                                background-color: white;
+                                color: $gray-900;
+                                position: absolute;
+                                top: 1rem;
+                                right: 1rem;
+                                border-radius: 4rem;
+                                width: 2rem;
+                                height: 2rem;
+                                border: none;
+
+                                &:hover {
+                                    background-color: $theme;
+                                    color: white;
+                                }
                             }
 
                             article {
-
                                 .best {
                                     position: absolute;
                                     top: 1rem;
@@ -301,71 +342,65 @@
                             }
                         }
 
-                        h2 {
-                            padding: 1rem;
+                        &:hover .image-and-best {
+                            .main-image {
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+
+                    h2 {
+                        padding: 1rem;
+                        max-width: 80%;
+                        color: $gray-300;
+
+                        @include lg {
                             max-width: 90%;
-                            color: $gray-300;
+                        }
+                    }
+
+                    p {
+                        padding-left: 1rem;
+                        color: $gray-500;
+                    }
+
+                    .price-and-discount {
+                        display: flex;
+                        font-weight: 700;
+
+                        .discount {
+                            margin-right: 1rem;
+                            font-size: 18px;
+                            color: $danger;
                         }
 
-                        p {
-                            padding-left: 1rem;
-                            color: $gray-500;
+                        .price-crossed {
+                            font-size: 16px;
+                            text-decoration: line-through;
                         }
 
-                        .price-and-discount {
-                            display: flex;
-                            font-weight: 700;
-
-                            .discount {
-                                margin-right: 1rem;
-                                font-size: 18px;
-                                color: $danger;
-                            }
-
-                            .price-crossed {
-                                font-size: 16px;
-                                text-decoration: line-through;
-                            }
-
-                            .price {
-                            }
+                        .price {
                         }
+                    }
 
-                        .end-line {
-                            display: flex;
-                            justify-content: center;
-                            align-content: center;
-                            border-top: 1px solid $gray-300;
-                            padding-bottom: 1.5rem;
-                            margin-left: 1rem;
-                            width: 90%;
-                        }
+                    .end-line {
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        border-top: 1px solid $gray-300;
+                        padding-bottom: 1.5rem;
+                        margin-left: 1rem;
+                        width: 90%;
+                    }
 
-                        .course-footer {
-                            display: flex;
-                            align-items: center;
-                            padding-left: 1rem;
-                            padding-bottom: 1rem;
+                    .course-footer {
+                        display: flex;
+                        align-items: center;
+                        padding-left: 1rem;
+                        padding-bottom: 1rem;
 
 
-
-                            .time {
-                                display: flex;
-                                align-items: center;
-
-                                i {
-                                    margin-right: .3rem;
-                                }
-
-                                p {
-                                    margin: 0;
-                                    margin-right: 2rem;
-                                    padding: 0;
-                                }
-                            }
-                        }
-
-                        .likes {
+                        .time {
                             display: flex;
                             align-items: center;
 
@@ -375,8 +410,23 @@
 
                             p {
                                 margin: 0;
+                                margin-right: 2rem;
                                 padding: 0;
                             }
+                        }
+                    }
+
+                    .likes {
+                        display: flex;
+                        align-items: center;
+
+                        i {
+                            margin-right: .3rem;
+                        }
+
+                        p {
+                            margin: 0;
+                            padding: 0;
                         }
                     }
                 }
