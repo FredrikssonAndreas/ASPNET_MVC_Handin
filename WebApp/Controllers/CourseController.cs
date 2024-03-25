@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WebApp.ViewModels;
+using static System.Net.WebRequestMethods;
 
 namespace WebApp.Controllers;
 
@@ -11,24 +12,26 @@ public class CourseController(HttpClient httpClient) : Controller
 
 
 	[HttpGet]
-	public async Task<IActionResult> Index()
+	public async Task<IActionResult> Index(string searchString)
 	{
-		try
-		{
+        try
+        {
+            var viewModel = new CourseViewModel();
+            viewModel.Courses = await PopulateCourses(); 
 
-			var viewModel = new CourseViewModel();
-			viewModel.Courses = await PopulateCourses();
-			if (viewModel == null || !viewModel.Courses.Any())
-			{
-				return NoContent();
-			}
-			return View(viewModel);
-		}
-		catch
-		{
-			return BadRequest();
-		}
-	}
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                viewModel.Courses = viewModel.Courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()));
+            }
+
+
+            return View(viewModel);
+        }
+        catch
+        {
+            return BadRequest();
+        }
+    }
 
 	[HttpGet]
 	public async Task<IEnumerable<CourseModel>> PopulateCourses()

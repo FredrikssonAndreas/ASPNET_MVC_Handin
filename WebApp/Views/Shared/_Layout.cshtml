@@ -14,13 +14,13 @@
 </head>
 
 <body>
-
-    @await Html.PartialAsync("~/Views/Shared/_headerPartial.cshtml")
-    <main>
-        @RenderBody()
-    </main>
-    @await Html.PartialAsync("~/Views/Shared/_footerPartial.cshtml")
-        
+    <div class="wrapper">
+        @await Html.PartialAsync("~/Views/Shared/_headerPartial.cshtml")
+        <main>
+            @RenderBody()
+        </main>
+        @await Html.PartialAsync("~/Views/Shared/_footerPartial.cshtml")
+    </div>
 
 
     <script defer src="https://kit.fontawesome.com/41c8b474e2.js" crossorigin="anonymous"></script>

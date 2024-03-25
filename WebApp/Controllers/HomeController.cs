@@ -117,7 +117,57 @@ public class HomeController(HttpClient httpClient) : Controller
 			
 		}
 		return RedirectToAction("Index", "Home");
-	}	
+	}
+
+	[HttpGet]
+
+	public IActionResult UnSubscribe()
+	{
+		var viewModel = new UnSubscribeViewModel();
+		return View(viewModel);
+	}
+
+	[HttpPost]
+
+	public async Task<IActionResult> Unsubscribe(UnSubscribeViewModel unSubscribe)
+	{
+		if (ModelState.IsValid)
+		{
+			if (unSubscribe != null)
+			{
+				var unSub = new UnSubscribeModel
+				{
+					Email = unSubscribe.UnSubscribeModel!.Email,
+					ConfirmBox = unSubscribe.UnSubscribeModel.ConfirmBox,
+				};
+
+				string apiUrl = $"https://localhost:7160/api/Subscriber/email?email={unSub.Email}";
+				var response = await _httpClient.DeleteAsync(apiUrl);
+
+
+				if (response.IsSuccessStatusCode)
+				{
+					TempData["Status"] = "Successfully Unsubscribed";
+					return View(unSubscribe);
+				}
+				else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+				{
+					TempData["StatusFail"] = "Your Email address was not found ,please try again";
+					return RedirectToAction("Unsubscribe", "Home");
+				}
+				else
+				{
+					TempData["StatusFail"] = "Something went wrong with email or checkbox";
+					return RedirectToAction("Unsubscribe", "Home");
+				}
+			}
+			TempData["StatusFail"] = "You must enter a Email address";
+			return RedirectToAction("Unsubscribe", "Home");
+		}
+		TempData["StatusFail"] = "Checkbox must be checked";
+		return RedirectToAction("Unsubscribe", "Home");
+
+	}
 }
 
   

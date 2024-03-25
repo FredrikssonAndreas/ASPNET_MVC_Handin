@@ -36,3 +36,12 @@ h6, .h6 { @include h6; }
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
+
+.dark-mode {
+    .wrapper {
+        height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        background-color: $gray-900;
+    }
+}

@@ -15,15 +15,17 @@
         <div class="heading">
             <h1>@Model.Title</h1>
             <div class="search">
-                <select>
-                    <option value="">All Categories</option>
-					<option value="1">Tech</option>
-					<option value="2">Production</option>
-					<option value="3">Code</option>
-					<option value="4">Development</option>
-                </select>
-                <input type="text" placeholder="Search courses" />
-                <i class="fa-regular fa-magnifying-glass"></i>
+                <form method="get" action="@Url.Action("Index", "Course")">
+                    <select>
+                        <option value="">All Categories</option>
+					    <option value="1">Tech</option>
+					    <option value="2">Production</option>
+					    <option value="3">Code</option>
+					    <option value="4">Development</option>
+                    </select>
+                    <input type="text" name="searchString" placeholder="Search courses" />
+                    <button type="submit"><i class="fa-regular fa-magnifying-glass"></i></button>
+                </form>
             </div>
         </div>
         <div class="course-grid">

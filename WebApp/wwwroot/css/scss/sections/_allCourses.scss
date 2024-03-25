@@ -266,10 +266,13 @@
                         line-height: 0;
                     }
 
-                    i {
-                        position: absolute;
-                        right: 16.5%;
-                        top: 18%;
+                    button {
+                        
+                        display: none;
+                        
+                        i {
+                            
+                        }
                     }
                 }
             }
@@ -303,6 +306,7 @@
 
                         &:hover {
                             cursor: pointer;
+                            @include theme-shadow;
                         }
 
                         .image-and-best {
