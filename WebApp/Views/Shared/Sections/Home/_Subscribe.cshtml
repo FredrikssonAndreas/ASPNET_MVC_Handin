@@ -1,6 +1,7 @@
 ﻿@model SubscribeViewModel;
 
 <section id="subscribe">
+	<a id="subscribe-action"></a>
 	<div class="section-subscribe">
 		<div class="container">
 			<div class="heading">
@@ -69,32 +70,6 @@
 						<button class="btn-theme text-s" type="submit">Subscribe</button>
 					</div>
 				</form>
-				<span class="information">
-					@if (ViewData["Status"]?.ToString() == "Created")
-					{
-						<span class="alert alert-success">
-							You have been subscribed
-						</span>
-					}
-					else if (ViewData["Status"]?.ToString() == "AlreadyExists")
-					{
-						<span class="alert alert-warning">
-							You have already subscribed
-						</span>
-					}
-					else if (ViewData["Status"]?.ToString() == "Invalid")
-					{
-						<span class="alert alert-danger">
-							You must enter an valid email address
-						</span>
-					}
-					else if (ViewData["Status"]?.ToString() == "ConnectionFailed")
-					{
-						<span class="alert alert-danger">
-							Unable to contact the server. Please try later.
-						</span>
-					}
-				</span>
 			</div>
 		</div>
 	</div>

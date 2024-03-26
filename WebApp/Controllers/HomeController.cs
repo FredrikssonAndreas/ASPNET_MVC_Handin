@@ -64,62 +64,67 @@ public class HomeController(HttpClient httpClient) : Controller
 	}
 
 
-	
-	[HttpPost]
-	public async Task<IActionResult> Subscribe(SubscribeViewModel viewModel)
-	{
-		
-		if (ModelState.IsValid)
-		{
-			try
-			{
-				var newSub = new SubscribeEmail
-				{
-					Email = viewModel.SubscribeEmail!.Email,
-					DailyNewsletter = viewModel.SubscribeEmail.DailyNewsletter,
-					AdvertisingUpdates = viewModel.SubscribeEmail.AdvertisingUpdates,
-					WeekinReview = viewModel.SubscribeEmail.WeekinReview,
-					StartupsWeekly = viewModel.SubscribeEmail.StartupsWeekly,
-					Podcasts = viewModel.SubscribeEmail.Podcasts,
-					EventUpdates = viewModel.SubscribeEmail.EventUpdates,
-				};
-				if (newSub != null)
-				{
-					var json = JsonConvert.SerializeObject(newSub);
 
-					if (json != null)
-					{
-						var content = new StringContent(json, Encoding.UTF8, "application/json");
-						var response = await _httpClient.PostAsync("https://localhost:7160/api/subscriber?key=ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi", content);
+    [HttpPost]
+    public async Task<IActionResult> Subscribe(SubscribeViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                var newSub = new SubscribeEmail
+                {
+                    Email = viewModel.SubscribeEmail!.Email,
+                    DailyNewsletter = viewModel.SubscribeEmail.DailyNewsletter,
+                    AdvertisingUpdates = viewModel.SubscribeEmail.AdvertisingUpdates,
+                    WeekinReview = viewModel.SubscribeEmail.WeekinReview,
+                    StartupsWeekly = viewModel.SubscribeEmail.StartupsWeekly,
+                    Podcasts = viewModel.SubscribeEmail.Podcasts,
+                    EventUpdates = viewModel.SubscribeEmail.EventUpdates,
+                };
+                if (newSub != null)
+                {
+                    var json = JsonConvert.SerializeObject(newSub);
 
-						if (response.IsSuccessStatusCode)
-						{
-							ViewData["Status"] = "Success";
-							
-						}
-						else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
-						{
-							ViewData["Status"] = "AlreadyExists.";
-							
-						}
-					}					
-				}
-			}
-			catch
-			{
-				ViewData["Status"] = "ConnectionFailed";
-				
-			}
-		}
-		else
-		{
-			ViewData["Status"] = "Failed";
-			
-		}
-		return RedirectToAction("Index", "Home");
-	}
+                    if (json != null)
+                    {
+                        var content = new StringContent(json, Encoding.UTF8, "application/json");
+                        var response = await _httpClient.PostAsync("https://localhost:7160/api/subscriber?key=ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi", content);
 
-	[HttpGet]
+                        if (response.IsSuccessStatusCode)
+                        {
+                            TempData["Status"] = "You have succesfully subscribed";
+                            return RedirectToAction("Index", "Home", null, "subscribe-action");
+
+                        }
+                        else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+                        {
+                            TempData["StatusFail"] = "Email address is already subscribed";
+                            return RedirectToAction("Index", "Home", null, "subscribe-action");
+
+                        }
+                    }
+
+                }
+            }
+            catch
+            {
+                TempData["StatusFail"] = "ConnectionFailed";
+                return RedirectToAction("Index", "Home", null, "subscribe-action");
+
+            }
+        }
+        else
+        {
+            TempData["StatusFail"] = "Failed";
+            return RedirectToAction("Index", "Home", null, "subscribe-action");
+
+        }
+
+        return RedirectToAction("Index", "Home", null, "subscribe-action");
+    }
+
+    [HttpGet]
 
 	public IActionResult UnSubscribe()
 	{
@@ -140,6 +145,7 @@ public class HomeController(HttpClient httpClient) : Controller
 					Email = unSubscribe.UnSubscribeModel!.Email,
 					ConfirmBox = unSubscribe.UnSubscribeModel.ConfirmBox,
 				};
+
 
 				string apiUrl = $"https://localhost:7160/api/Subscriber/email?email={unSub.Email}";
 				var response = await _httpClient.DeleteAsync(apiUrl);

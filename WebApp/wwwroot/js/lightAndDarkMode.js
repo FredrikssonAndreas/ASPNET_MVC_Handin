@@ -32,11 +32,9 @@ function activateDarkMode() {
     document.body.classList.add("dark-mode");
 }
 
-
 function deactivateDarkMode() {
     document.body.classList.remove("dark-mode");
 }
-
 
 function updateLogo() {
     logoImage = isDarkMode ? "/images/silicon-logo-dark.svg" : "/images/silicon-logo.svg";
@@ -49,7 +47,6 @@ function update404() {
     notFoundElement.innerHTML = "<img src='" + notFoundImage + "' alt='404 Not Found'>";
 }
 
-// Körs när sidan laddas för att sätta temaläget och uppdatera logotypen
 window.onload = function () {   
     if (isDarkMode) {
         activateDarkMode();

@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 using WebApp.ViewModels;
 using static System.Net.WebRequestMethods;
 
@@ -23,7 +24,6 @@ public class CourseController(HttpClient httpClient) : Controller
             {
                 viewModel.Courses = viewModel.Courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()));
             }
-
 
             return View(viewModel);
         }
@@ -54,5 +54,7 @@ public class CourseController(HttpClient httpClient) : Controller
 			return Enumerable.Empty<CourseModel>();
 		}
 	}
+
+
 
 }
