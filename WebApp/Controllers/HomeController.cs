@@ -45,14 +45,51 @@ public class HomeController(HttpClient httpClient) : Controller
 
 	
     [HttpPost]
-    public IActionResult Contact(ContactViewModel viewmodel)
+    public async Task<IActionResult> Contact(ContactViewModel viewmodel)
     {
         if (ModelState.IsValid)
         {
+           try
+            {
+                var newContactForm = new ContactForm
+                {
+                    FullName = viewmodel.ContactForm!.FullName,
+                    Email = viewmodel.ContactForm.Email,
+                    Service = viewmodel.ContactForm.Service,
+                    Message = viewmodel.ContactForm.Message,
+                };
+                if (newContactForm != null)
+                {
+                    var json = JsonConvert.SerializeObject(newContactForm);
+
+                    if (json != null)
+                    {
+                        var content = new StringContent(json, Encoding.UTF8, "application/json");
+                        var response = await _httpClient.PostAsync("https://localhost:7160/api/contactform?key=ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi", content);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            TempData["Status"] = "You have succesfully sent your message";
+                            return RedirectToAction("Contact", "Home");
+
+                        }                
+                    }
+                }
+            }
+            catch
+            {
+                TempData["StatusFail"] = "ConnectionFailed";
+                return RedirectToAction("Contact", "Home");
+            }
+        }
+        else
+        {
+            TempData["StatusFail"] = "Failed";
             return RedirectToAction("Contact", "Home");
         }
 
-        return View(viewmodel);
+        return RedirectToAction("Contact", "Home");
+        
     }
 
 
@@ -104,7 +141,6 @@ public class HomeController(HttpClient httpClient) : Controller
 
                         }
                     }
-
                 }
             }
             catch
@@ -146,8 +182,8 @@ public class HomeController(HttpClient httpClient) : Controller
 					ConfirmBox = unSubscribe.UnSubscribeModel.ConfirmBox,
 				};
 
-
-				string apiUrl = $"https://localhost:7160/api/Subscriber/email?email={unSub.Email}";
+                string apiKey = "ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi";
+                string apiUrl = $"https://localhost:7160/api/Subscriber/email?email={unSub.Email}&key={apiKey}";
 				var response = await _httpClient.DeleteAsync(apiUrl);
 
 
