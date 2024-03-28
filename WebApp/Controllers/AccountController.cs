@@ -4,6 +4,9 @@ using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 using WebApp.ViewModels;
 
 
@@ -17,19 +20,21 @@ public class AccountController : Controller
 	private readonly SignInManager<UserEntity> _signInManager;
 	private readonly AddressRepository _addressRepository;
 	private readonly OptionalInfoRepository _optionalInfoRepository;
+	private readonly HttpClient _httpClient;
 
 
 
-	public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AddressRepository addressRepository, OptionalInfoRepository optionalInfoRepository)
-	{
-		_userManager = userManager;
-		_signInManager = signInManager;
-		_addressRepository = addressRepository;
-		_optionalInfoRepository = optionalInfoRepository;
-	}
+    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AddressRepository addressRepository, OptionalInfoRepository optionalInfoRepository, HttpClient httpClient)
+    {
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _addressRepository = addressRepository;
+        _optionalInfoRepository = optionalInfoRepository;
+        _httpClient = httpClient;
+    }
 
 
-	[HttpGet]
+    [HttpGet]
 	public async Task<IActionResult> Index()
 	{
 		var viewModel = new AccountDetailsViewModel
@@ -207,17 +212,55 @@ public class AccountController : Controller
 		return RedirectToAction("Security", "Account");
 	}
 
-	[HttpGet]
-	public async Task<IActionResult> SavedItems()
-	{
-		var viewmodel = new AccountSavedItemsViewModel
-		{
-			AccountBasic = await PopulateBasic()
-		};
-		return View(viewmodel);
-	}
+    [HttpPost]
+    public async Task<IActionResult> DeleteOneCourse(int courseId)
+    {
+        string apiUrl = "https://localhost:7160/api/SavedCourse/";
 
-	[HttpPost]
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var saveCourse = new SaveCourseModel
+            {
+				UserEmail = user.Email!,
+                CourseId = courseId,
+            };
+
+            var json = JsonConvert.SerializeObject(saveCourse);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+			using (var request = new HttpRequestMessage(HttpMethod.Delete, $"{apiUrl}{user.Email}"))
+			{
+				request.Content = content;
+				var response = await _httpClient.SendAsync(request);
+				if (response.IsSuccessStatusCode)
+				{
+					TempData["Deleted"] = "Course deleted";
+					return RedirectToAction("SavedItems", "Account");
+				}
+				else
+				{
+					TempData["Failed"] = "Something went wrong";
+                    return RedirectToAction("SavedItems", "Account");
+                }
+			}
+        }
+        return RedirectToAction("SavedItems", "Account");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> SavedItems()
+    {
+        var viewmodel = new AccountSavedItemsViewModel
+        {
+            AccountBasic = await PopulateBasic(),
+            Courses = await PopulateSavedCourses(),
+        };
+        return View(viewmodel);
+    }
+
+    [HttpPost]
 
 	public IActionResult SavedItems(AccountSavedItemsViewModel viewmodel)
 	{
@@ -397,5 +440,42 @@ public class AccountController : Controller
 		}
 		return null!;
 	}
+
+    private async Task<IEnumerable<CourseModel>> PopulateSavedCourses()
+    {
+        string apiUrl = "https://localhost:7160/api/savedcourse/";
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var userDto = new UserToGetCoursesModel
+            {
+                Email = user.Email!
+            };
+            if (userDto.Email != null)
+            {
+
+
+                var response = await _httpClient.GetAsync($"{apiUrl}{userDto.Email}");
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+                if (data != null)
+                {
+                    return data;
+                }
+
+
+                else
+                {
+                    return Enumerable.Empty<CourseModel>();
+                }
+            }
+
+            return Enumerable.Empty<CourseModel>();
+        }
+        return Enumerable.Empty<CourseModel>();
+    }
 }	
 
