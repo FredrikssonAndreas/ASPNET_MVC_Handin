@@ -3505,45 +3505,67 @@ footer .container .social-media a:hover {
 #saved-items .container .account-nav .nav-buttons .btn-gray:hover {
   background-color: #6366F1;
 }
-#saved-items .container .course-grid .course-item {
+#saved-items .container .saved-courses {
+  width: 100%;
+}
+#saved-items .container .saved-courses .heading {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+#saved-items .container .saved-courses .heading h1 {
+  color: #0B0F19;
+}
+#saved-items .container .saved-courses .heading button {
+  background-color: white;
+  border: 1px solid #EF4444;
+  color: #EF4444;
+  font-weight: 700;
+}
+#saved-items .container .saved-courses .heading button:hover {
+  background-color: #B4B7C9;
+  color: #0B0F19;
+}
+#saved-items .container .saved-courses .course-grid .course-item {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
 }
 @media (min-width: 992px) {
-  #saved-items .container .course-grid .course-item {
+  #saved-items .container .saved-courses .course-grid .course-item {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 }
 @media (min-width: 1400px) {
-  #saved-items .container .course-grid .course-item {
+  #saved-items .container .saved-courses .course-grid .course-item {
     grid-template-columns: 1fr 1fr;
   }
 }
-#saved-items .container .course-grid .course-item .course-box {
+#saved-items .container .saved-courses .course-grid .course-item .course-box {
   display: flex;
   flex-direction: column;
   border-bottom-left-radius: 0.9rem !important;
   border-bottom-right-radius: 0.9rem !important;
   overflow: hidden;
 }
-#saved-items .container .course-grid .course-item .course-box:hover {
+#saved-items .container .saved-courses .course-grid .course-item .course-box:hover {
   transition: all 0.15s ease-in-out;
   cursor: pointer;
   box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.1);
 }
-#saved-items .container .course-grid .course-item .course-box .image-and-best {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best {
   position: relative;
 }
-#saved-items .container .course-grid .course-item .course-box .image-and-best .main-image {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .main-image {
   width: 100%;
   height: auto;
   border-top-left-radius: 0.9rem !important;
   border-top-right-radius: 0.9rem !important;
   transition: transform 0.3s ease-in-out;
 }
-#saved-items .container .course-grid .course-item .course-box .image-and-best .bookmark {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark {
   background-color: white;
   color: #0B0F19;
   position: absolute;
@@ -3554,11 +3576,11 @@ footer .container .social-media a:hover {
   height: 2rem;
   border: none;
 }
-#saved-items .container .course-grid .course-item .course-box .image-and-best .bookmark:hover {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark:hover {
   background-color: #6366F1;
   color: white;
 }
-#saved-items .container .course-grid .course-item .course-box .image-and-best .bookmark:hover::before {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark:hover::before {
   content: attr(title);
   position: absolute;
   bottom: 50%;
@@ -3572,40 +3594,43 @@ footer .container .social-media a:hover {
   font-weight: 700;
   white-space: nowrap;
 }
-#saved-items .container .course-grid .course-item .course-box .image-and-best article .best {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best article .best {
   position: absolute;
   top: 1rem;
   left: 1rem;
 }
-#saved-items .container .course-grid .course-item .course-box:hover .image-and-best .main-image {
+#saved-items .container .saved-courses .course-grid .course-item .course-box:hover .image-and-best .main-image {
   transform: scale(1.1);
 }
-#saved-items .container .course-grid .course-item .course-box h2 {
+#saved-items .container .saved-courses .course-grid .course-item .course-box h2 {
   padding: 1rem;
   max-width: 80%;
 }
 @media (min-width: 992px) {
-  #saved-items .container .course-grid .course-item .course-box h2 {
+  #saved-items .container .saved-courses .course-grid .course-item .course-box h2 {
     max-width: 90%;
   }
 }
-#saved-items .container .course-grid .course-item .course-box p {
+#saved-items .container .saved-courses .course-grid .course-item .course-box p {
   padding-left: 1rem;
 }
-#saved-items .container .course-grid .course-item .course-box .price-and-discount {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .price-and-discount {
   display: flex;
   font-weight: 700;
 }
-#saved-items .container .course-grid .course-item .course-box .price-and-discount .discount {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .price-and-discount .discount {
   margin-right: 1rem;
   font-size: 18px;
   color: #EF4444;
 }
-#saved-items .container .course-grid .course-item .course-box .price-and-discount .price-crossed {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .price-and-discount .price-crossed {
   font-size: 16px;
   text-decoration: line-through;
 }
-#saved-items .container .course-grid .course-item .course-box .end-line {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .price-and-discount .price {
+  color: #6366F1;
+}
+#saved-items .container .saved-courses .course-grid .course-item .course-box .end-line {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -3614,32 +3639,32 @@ footer .container .social-media a:hover {
   margin-left: 1rem;
   width: 90%;
 }
-#saved-items .container .course-grid .course-item .course-box .course-footer {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .course-footer {
   display: flex;
   align-items: center;
   padding-left: 1rem;
   padding-bottom: 1rem;
 }
-#saved-items .container .course-grid .course-item .course-box .course-footer .time {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .course-footer .time {
   display: flex;
   align-items: center;
 }
-#saved-items .container .course-grid .course-item .course-box .course-footer .time i {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .course-footer .time i {
   margin-right: 0.3rem;
 }
-#saved-items .container .course-grid .course-item .course-box .course-footer .time p {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .course-footer .time p {
   margin: 0;
   margin-right: 2rem;
   padding: 0;
 }
-#saved-items .container .course-grid .course-item .course-box .likes {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .likes {
   display: flex;
   align-items: center;
 }
-#saved-items .container .course-grid .course-item .course-box .likes i {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .likes i {
   margin-right: 0.3rem;
 }
-#saved-items .container .course-grid .course-item .course-box .likes p {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .likes p {
   margin: 0;
   padding: 0;
 }
@@ -3727,23 +3752,45 @@ footer .container .social-media a:hover {
 .dark-mode #saved-items .container .account-nav .nav-buttons .btn-gray:hover {
   background-color: #6366F1;
 }
-.dark-mode #saved-items .container .course-grid .course-item {
+.dark-mode #saved-items .container .saved-courses {
+  width: 100%;
+}
+.dark-mode #saved-items .container .saved-courses .heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+.dark-mode #saved-items .container .saved-courses .heading h1 {
+  color: #E2E5F1;
+}
+.dark-mode #saved-items .container .saved-courses .heading .delete-button form button {
+  background-color: #0B0F19;
+  border: 1px solid #EF4444;
+  color: #EF4444;
+  font-weight: 700;
+}
+.dark-mode #saved-items .container .saved-courses .heading .delete-button form button:hover {
+  background-color: #B4B7C9;
+  color: #0B0F19;
+}
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
 }
 @media (min-width: 992px) {
-  .dark-mode #saved-items .container .course-grid .course-item {
+  .dark-mode #saved-items .container .saved-courses .course-grid .course-item {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 }
 @media (min-width: 1400px) {
-  .dark-mode #saved-items .container .course-grid .course-item {
+  .dark-mode #saved-items .container .saved-courses .course-grid .course-item {
     grid-template-columns: 1fr 1fr;
   }
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box {
   display: flex;
   flex-direction: column;
   background-color: black;
@@ -3751,21 +3798,21 @@ footer .container .social-media a:hover {
   border-bottom-left-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box:hover {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box:hover {
   cursor: pointer;
   box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box .image-and-best {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best {
   position: relative;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box .image-and-best .main-image {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .main-image {
   width: 100%;
   height: auto;
   border-top-left-radius: 0.9rem !important;
   border-top-right-radius: 0.9rem !important;
   transition: transform 0.3s ease-in-out;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box .image-and-best .bookmark {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark {
   background-color: white;
   color: #0B0F19;
   position: absolute;
@@ -3776,11 +3823,11 @@ footer .container .social-media a:hover {
   height: 2rem;
   border: none;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box .image-and-best .bookmark:hover {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark:hover {
   background-color: #6366F1;
   color: white;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box .image-and-best .bookmark:hover::before {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark:hover::before {
   content: attr(title);
   position: absolute;
   bottom: 50%;
@@ -3794,42 +3841,46 @@ footer .container .social-media a:hover {
   font-weight: 700;
   white-space: nowrap;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box .image-and-best article .best {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best article .best {
   position: absolute;
   top: 1rem;
   left: 1rem;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-box:hover .image-and-best .main-image {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-box:hover .image-and-best .main-image {
   transform: scale(1.1);
 }
-.dark-mode #saved-items .container .course-grid .course-item h2 {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item h2 {
   padding: 1rem;
   max-width: 80%;
   color: #E2E5F1;
 }
 @media (min-width: 992px) {
-  .dark-mode #saved-items .container .course-grid .course-item h2 {
+  .dark-mode #saved-items .container .saved-courses .course-grid .course-item h2 {
     max-width: 90%;
   }
 }
-.dark-mode #saved-items .container .course-grid .course-item p {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item p {
   padding-left: 1rem;
   color: #B4B7C9;
 }
-.dark-mode #saved-items .container .course-grid .course-item .price-and-discount {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .price-and-discount {
   display: flex;
   font-weight: 700;
 }
-.dark-mode #saved-items .container .course-grid .course-item .price-and-discount .discount {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .price-and-discount .discount {
   margin-right: 1rem;
   font-size: 18px;
   color: #EF4444;
 }
-.dark-mode #saved-items .container .course-grid .course-item .price-and-discount .price-crossed {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .price-and-discount .price-crossed {
   font-size: 16px;
   text-decoration: line-through;
+  color: #B4B7C9;
 }
-.dark-mode #saved-items .container .course-grid .course-item .end-line {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .price-and-discount .price {
+  color: #6366F1;
+}
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .end-line {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -3838,32 +3889,32 @@ footer .container .social-media a:hover {
   margin-left: 1rem;
   width: 90%;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-footer {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-footer {
   display: flex;
   align-items: center;
   padding-left: 1rem;
   padding-bottom: 1rem;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-footer .time {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-footer .time {
   display: flex;
   align-items: center;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-footer .time i {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-footer .time i {
   margin-right: 0.3rem;
 }
-.dark-mode #saved-items .container .course-grid .course-item .course-footer .time p {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .course-footer .time p {
   margin: 0;
   margin-right: 2rem;
   padding: 0;
 }
-.dark-mode #saved-items .container .course-grid .course-item .likes {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .likes {
   display: flex;
   align-items: center;
 }
-.dark-mode #saved-items .container .course-grid .course-item .likes i {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .likes i {
   margin-right: 0.3rem;
 }
-.dark-mode #saved-items .container .course-grid .course-item .likes p {
+.dark-mode #saved-items .container .saved-courses .course-grid .course-item .likes p {
   margin: 0;
   padding: 0;
 }
@@ -4345,6 +4396,9 @@ footer .container .social-media a:hover {
   font-size: 16px;
   text-decoration: line-through;
 }
+#courses .container .course-grid .course-item .course-box .price-and-discount .price {
+  color: #6366F1;
+}
 #courses .container .course-grid .course-item .course-box .end-line {
   display: flex;
   justify-content: center;
@@ -4519,6 +4573,9 @@ footer .container .social-media a:hover {
 .dark-mode #courses .container .course-grid .course-item .price-and-discount .price-crossed {
   font-size: 16px;
   text-decoration: line-through;
+}
+.dark-mode #courses .container .course-grid .course-item .price-and-discount .price {
+  color: #6366F1;
 }
 .dark-mode #courses .container .course-grid .course-item .end-line {
   display: flex;
