@@ -4,7 +4,7 @@ namespace WebApp.ViewModels
 {
     public class AccountSavedItemsViewModel
     {
-        public string Title { get; set; } = "Saved Items";
+        public string Title { get; set; } = "Saved Courses";
 
         public CourseModel? Course { get; set; }
 

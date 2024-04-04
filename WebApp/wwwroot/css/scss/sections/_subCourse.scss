@@ -1,4 +1,4 @@
-#saved-items {
+#my-items {
     padding-bottom: 2rem;
     padding-top: 2rem;
 
@@ -301,7 +301,7 @@
 }
 
 .dark-mode {
-    #saved-items {
+    #my-items {
         padding-bottom: 2rem;
         padding-top: 2rem;
         background-color: $gray-900;
@@ -314,6 +314,7 @@
                 display: flex;
                 flex-direction: row;
             }
+
             .account-nav {
                 padding-bottom: 2rem;
                 border-bottom: 1px solid rgb(147, 151, 173, 0.3);
@@ -337,6 +338,7 @@
                     img {
                     }
                 }
+
                 .nav-name-info {
                     display: flex;
                     flex-direction: column;
@@ -355,6 +357,7 @@
                         color: $gray-500;
                     }
                 }
+
                 .nav-buttons {
                     margin-right: 1rem;
                     display: grid;
@@ -439,6 +442,7 @@
                         @include xxl {
                             grid-template-columns: 1fr 1fr;
                         }
+
                         .course-box {
                             display: flex;
                             flex-direction: column;
@@ -511,6 +515,7 @@
                                 }
                             }
                         }
+
                         h2 {
                             padding: 1rem;
                             max-width: 80%;
@@ -520,6 +525,7 @@
                                 max-width: 80%;
                             }
                         }
+
                         p {
                             padding-left: 1rem;
                             color: $gray-500;
@@ -546,6 +552,7 @@
                                 color: $theme;
                             }
                         }
+
                         .end-line {
                             display: flex;
                             justify-content: center;
@@ -555,6 +562,7 @@
                             margin-left: 1rem;
                             width: 90%;
                         }
+
                         .course-footer {
                             display: flex;
                             align-items: center;
@@ -577,6 +585,7 @@
                                 }
                             }
                         }
+
                         .likes {
                             display: flex;
                             align-items: center;

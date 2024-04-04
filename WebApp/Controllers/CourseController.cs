@@ -15,8 +15,8 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
     private readonly UserManager<UserEntity> _userManager = userManager;
 
 
-	[HttpGet]
-	public async Task<IActionResult> Index(string searchString, int? category )
+    [HttpGet]
+    public async Task<IActionResult> Index(string searchString, int? category, int pageNumber = 1, int pageSize = 6 )
 	{
         try
         {
@@ -25,7 +25,9 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                viewModel.Courses = viewModel.Courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()));
+                viewModel.Courses = viewModel.Courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()) || s.Author!.ToLower().Contains(searchString.ToLower()));
+                
+
             }
 
             if (category.HasValue)
@@ -42,6 +44,14 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
                         break;
                 }
             }
+
+            viewModel.Pagination.CurrentPage = pageNumber;
+            viewModel.Pagination.PageSize = pageSize;
+            viewModel.Pagination.TotalItems = viewModel.Courses.Count();
+
+            viewModel.Courses = viewModel.Courses.Skip((pageNumber - 1) * pageSize)
+                                                 .Take(pageSize)
+                                                 .ToList();
 
             return View(viewModel);
         }
@@ -111,5 +121,31 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         return BadRequest();
     }
 
+    [HttpGet]
+    public async Task<IActionResult> SingleCourse(int id)
+    {
+        string apiUrl = "https://localhost:7160/api/course/" + id;
+
+        var response = await _httpClient.GetAsync(apiUrl);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            var courseModel = JsonConvert.DeserializeObject<CourseModel>(json);
+
+            if (courseModel != null)
+            {
+                var viewModel = new CourseViewModel
+                {
+                    Course = courseModel
+                };
+      
+                return View(viewModel);
+            }
+        }
+
+        return RedirectToAction("Index", "Course");
+    }
+
+
 }
- 

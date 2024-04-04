@@ -516,5 +516,167 @@ public class AccountController : Controller
         }
         return Enumerable.Empty<CourseModel>();
     }
-}	
+
+    private async Task<IEnumerable<CourseModel>> PopulateMyCourses()
+    {
+        string apiUrl = "https://localhost:7160/api/mycourses/";
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var userDto = new UserToGetCoursesModel
+            {
+                Email = user.Email!
+            };
+            if (userDto.Email != null)
+            {
+
+
+                var response = await _httpClient.GetAsync($"{apiUrl}{userDto.Email}");
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+                if (data != null)
+                {
+                    return data;
+                }
+
+
+                else
+                {
+                    return Enumerable.Empty<CourseModel>();
+                }
+            }
+
+            return Enumerable.Empty<CourseModel>();
+        }
+        return Enumerable.Empty<CourseModel>();
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> SubCourse()
+    {
+        var viewModel = new AccountMyCoursesViewModel
+        {
+            AccountBasic = await PopulateBasic(),
+            Courses = await PopulateMyCourses(),
+        };
+        return View(viewModel);
+    }
+
+    [HttpPost]
+
+    public async Task<IActionResult> SubCourse(int CourseId)
+    {
+        string apiUrl = "https://localhost:7160/api/mycourses/";
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var saveCourse = new MyCourses
+            {
+                UserEmail = user.Email!,
+                CourseId = CourseId,
+            };
+
+            var json = JsonConvert.SerializeObject(saveCourse);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var respsonse = await _httpClient.PostAsync(apiUrl, content);
+
+            if (respsonse.IsSuccessStatusCode)
+            {
+                TempData["Saved"] = "Course saved";
+                return Ok(respsonse);
+            }
+
+            else
+            {
+                TempData["Failed"] = "Something went wrong";
+                return NoContent();
+            }
+
+
+        }
+        return BadRequest();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteAllMyCourses()
+    {
+        string apiUrl = "https://localhost:7160/api/mycourses/";
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var saveCourse = new MyCourses
+            {
+                UserEmail = user.Email!,
+
+            };
+
+            var json = JsonConvert.SerializeObject(saveCourse);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            using (var request = new HttpRequestMessage(HttpMethod.Delete, $"{apiUrl}{user.Email}/courses"))
+            {
+                request.Content = content;
+                var response = await _httpClient.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["Deleted"] = "All courses deleted";
+                    return RedirectToAction("SubCourse", "Account");
+                }
+                else
+                {
+                    TempData["Failed"] = "Something went wrong";
+                    return RedirectToAction("SubCourse", "Account");
+                }
+            }
+        }
+        return RedirectToAction("SubCourse", "Account");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteOneMyCourse(int courseId)
+    {
+        string apiUrl = "https://localhost:7160/api/mycourses/";
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var saveCourse = new MyCourses
+            {
+                UserEmail = user.Email!,
+                CourseId = courseId,
+            };
+
+            var json = JsonConvert.SerializeObject(saveCourse);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            using (var request = new HttpRequestMessage(HttpMethod.Delete, $"{apiUrl}{user.Email}"))
+            {
+                request.Content = content;
+                var response = await _httpClient.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["Deleted"] = "Course deleted";
+                    return RedirectToAction("SubCourse", "Account");
+                }
+                else
+                {
+                    TempData["Failed"] = "Something went wrong";
+                    return RedirectToAction("SubCourse", "Account");
+                }
+            }
+        }
+        return RedirectToAction("SubCourse", "Account");
+    }
+
+}
 
