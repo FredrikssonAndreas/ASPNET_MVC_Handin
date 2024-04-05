@@ -1,10 +1,10 @@
 #black-and-white {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
-        position: relative;
-        z-index: -2;
-    
-       .section-black-and-white {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    position: relative;
+    z-index: -2;
+
+    .section-black-and-white {
 
         .boxes {
             display: flex;
@@ -16,7 +16,7 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                z-index: -1; 
+                z-index: -1;
             }
 
             .box-white {
@@ -28,7 +28,7 @@
                 top: 0;
                 z-index: -1;
             }
-        }    
+        }
 
         .container {
             align-items: center;
@@ -37,12 +37,13 @@
                 display: flex;
                 justify-content: center;
                 gap: 2rem;
-                
+
                 .first {
                     color: #fff !important;
                     width: 100%;
                     text-align: end;
                     @include h5;
+
                     @include lg {
                         @include h1;
                     }
@@ -52,25 +53,23 @@
                     width: 100%;
                     text-align: start;
                     @include h5;
+
                     @include lg {
                         @include h1;
                     }
                 }
-                             
-               
             }
-        .bg-image {
-            display: flex;
-            justify-content: center;
-            padding-top: 3rem;
 
-            img {
-                width: 100%;
-                height: 100%;
-            }
-         
+            .bg-image {
+                display: flex;
+                justify-content: center;
+                padding-top: 3rem;
 
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
             }
         }
     }
-}    
+}

@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Entities;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -145,6 +146,8 @@ public class AuthController : Controller
         var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action("GoogleCallback"));
         return new ChallengeResult("Google", authProps);
     }
+
+
 
     [HttpGet]
     public async Task<IActionResult> GoogleCallback()

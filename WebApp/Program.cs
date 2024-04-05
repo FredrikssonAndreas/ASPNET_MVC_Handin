@@ -2,6 +2,7 @@ using Infrastructure.Contexts;
 using Infrastructure.Entities;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -40,7 +41,8 @@ builder.Services.AddAuthentication().AddFacebook(x =>
 builder.Services.AddAuthentication().AddGoogle(x =>
 {
     x.ClientId = "200009194355-vqbtfm2gg0gdu5ag5l68r7no0rlkd8cq.apps.googleusercontent.com";
-    x.ClientSecret = "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";    
+    x.ClientSecret = "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";
+  
 });
 
 builder.Services.AddScoped<AddressRepository>();

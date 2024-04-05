@@ -2,6 +2,7 @@
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
 using System.Text;
 using WebApp.ViewModels;
@@ -11,22 +12,22 @@ namespace WebApp.Controllers;
 
 public class CourseController(HttpClient httpClient, UserManager<UserEntity> userManager) : Controller
 {
-	private readonly HttpClient _httpClient = httpClient;
+    private readonly HttpClient _httpClient = httpClient;
     private readonly UserManager<UserEntity> _userManager = userManager;
 
 
     [HttpGet]
-    public async Task<IActionResult> Index(string searchString, int? category, int pageNumber = 1, int pageSize = 6 )
-	{
+    public async Task<IActionResult> Index(string searchString, int? category, int pageNumber = 1, int pageSize = 6)
+    {
         try
         {
             var viewModel = new CourseViewModel();
-            viewModel.Courses = await PopulateCourses(); 
+            viewModel.Courses = await PopulateCourses();
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 viewModel.Courses = viewModel.Courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()) || s.Author!.ToLower().Contains(searchString.ToLower()));
-                
+
 
             }
 
@@ -34,10 +35,10 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
             {
                 switch (category)
                 {
-                    case 1: 
+                    case 1:
                         viewModel.Courses = viewModel.Courses.Where(c => c.IsBestSeller == true);
                         break;
-                    case 2: 
+                    case 2:
                         viewModel.Courses = viewModel.Courses.Where(c => c.DiscountPrice != null);
                         break;
                     default:
@@ -61,27 +62,27 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         }
     }
 
-	[HttpGet]
-	public async Task<IEnumerable<CourseModel>> PopulateCourses()
-	{
+    [HttpGet]
+    public async Task<IEnumerable<CourseModel>> PopulateCourses()
+    {
 
-		string apiUrl = "https://localhost:7160/api/course";
+        string apiUrl = "https://localhost:7160/api/course?key=ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi";
 
-		var response = await _httpClient.GetAsync(apiUrl);
+        var response = await _httpClient.GetAsync(apiUrl);
 
-		var json = await response.Content.ReadAsStringAsync();
+        var json = await response.Content.ReadAsStringAsync();
 
-		var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
-		if (data != null)
-		{
-			return data;
-		}
-		 
-		else
-		{
-			return Enumerable.Empty<CourseModel>();
-		}
-	}
+        var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+        if (data != null)
+        {
+            return data;
+        }
+
+        else
+        {
+            return Enumerable.Empty<CourseModel>();
+        }
+    }
 
     [HttpPost]
 
@@ -124,7 +125,7 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
     [HttpGet]
     public async Task<IActionResult> SingleCourse(int id)
     {
-        string apiUrl = "https://localhost:7160/api/course/" + id;
+        string apiUrl = "https://localhost:7160/api/course/" + id + "?key=ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi";
 
         var response = await _httpClient.GetAsync(apiUrl);
 
@@ -139,7 +140,7 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
                 {
                     Course = courseModel
                 };
-      
+
                 return View(viewModel);
             }
         }
@@ -147,5 +148,5 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         return RedirectToAction("Index", "Course");
     }
 
-
 }
+

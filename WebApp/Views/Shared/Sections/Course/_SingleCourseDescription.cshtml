@@ -81,11 +81,13 @@
                         <p class="black">$@Model.Course.Price</p>
                     }
                 </div>
-                <form method="post" asp-controller="Account" asp-action="SubCourse">
+                <form id="join-course-form" method="post" asp-controller="Account" asp-action="SubCourse">
                     <input type="hidden" name="CourseId" value="@Model.Course.Id" />
-                    <button class="btn-theme" type="submit">Join course</button>
+                    <button class="btn-theme" type="submit" onclick="joinCourse()">Join course</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+@await Html.PartialAsync("~/Views/Shared/_joinCourseScriptPartial.cshtml")
