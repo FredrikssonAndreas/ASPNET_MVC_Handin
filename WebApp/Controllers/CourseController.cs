@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 using System.Text;
 using WebApp.ViewModels;
 using static System.Net.WebRequestMethods;
-
+using System.Linq;
+using System.Net.Http.Headers;
 namespace WebApp.Controllers;
 
 public class CourseController(HttpClient httpClient, UserManager<UserEntity> userManager) : Controller
@@ -27,7 +28,7 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
             if (!String.IsNullOrEmpty(searchString))
             {
                 viewModel.Courses = viewModel.Courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()) || s.Author!.ToLower().Contains(searchString.ToLower()));
-
+                
 
             }
 
@@ -65,26 +66,30 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
     [HttpGet]
     public async Task<IEnumerable<CourseModel>> PopulateCourses()
     {
-
-        string apiUrl = "https://localhost:7160/api/course?key=ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi";
-
-        var response = await _httpClient.GetAsync(apiUrl);
-
-        var json = await response.Content.ReadAsStringAsync();
-
-        var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
-        if (data != null)
+        if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
         {
-            return data;
-        }
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-        else
-        {
-            return Enumerable.Empty<CourseModel>();
+            string apiUrl = "https://localhost:7160/api/course?key=ZDg3YjM5ZDctZTE3NS00ZjE0LTliYWItNDlmYzc0NWE3NDhi";
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+            if (data != null)
+            {
+                return data;
+            }
+            else
+            {
+                return Enumerable.Empty<CourseModel>();
+            }
         }
+        return Enumerable.Empty<CourseModel>();
     }
 
-    [HttpPost]
+    [HttpPost] 
 
     public async Task<IActionResult> SaveCourse(int CourseId)
     {

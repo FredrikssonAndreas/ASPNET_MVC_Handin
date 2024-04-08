@@ -316,7 +316,9 @@ public class AccountController : Controller
 
 	public async Task<IActionResult> LogOut()
 	{
-		await _signInManager.SignOutAsync();
+        
+		Response.Cookies.Delete("AccessToken");
+        await _signInManager.SignOutAsync();
 
 		return RedirectToAction("Index", "Home");
 	}
