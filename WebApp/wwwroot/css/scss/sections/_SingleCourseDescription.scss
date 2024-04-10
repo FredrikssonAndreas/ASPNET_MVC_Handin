@@ -8,7 +8,7 @@
         @include xl {
             display: flex;
             justify-content: space-between;
-            align-item: center;
+            align-items: center;
             padding: 90px 0 90px 0;
         }
 
@@ -35,8 +35,7 @@
                 margin: 20px 0 0 0;
 
                 .point {
-                    display: flex;
-                    justify-content: baseline;
+                    display: flex;                  
                     align-items: baseline;
                     gap: 10px;
 
@@ -70,8 +69,7 @@
                     margin: 25px 0 40px 0;
 
                     .content-info {
-                        display: flex;
-                        justify-content: baseline;
+                        display: flex;                       
                         align-items: baseline;
                         gap: 10px;
                         margin: 0 0 10px 0;
@@ -120,7 +118,7 @@
             @include xl {
                 display: flex;
                 justify-content: space-between;
-                align-item: center;
+                align-items: center;
                 padding: 90px 0 90px 0;
             }
 
@@ -133,6 +131,7 @@
 
                 h1 {
                     color: $gray-300;
+                   
                 }
 
                 .info {
@@ -153,8 +152,7 @@
                     margin: 20px 0 0 0;
 
                     .point {
-                        display: flex;
-                        justify-content: baseline;
+                        display: flex;                    
                         align-items: baseline;
                         gap: 10px;
 
@@ -191,8 +189,7 @@
                         margin: 25px 0 40px 0;
 
                         .content-info {
-                            display: flex;
-                            justify-content: baseline;
+                            display: flex;                            
                             align-items: baseline;
                             gap: 10px;
                             margin: 0 0 10px 0;
