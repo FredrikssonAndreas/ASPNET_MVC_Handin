@@ -9,6 +9,7 @@ using WebApp.ViewModels;
 using static System.Net.WebRequestMethods;
 using System.Linq;
 using System.Net.Http.Headers;
+using System;
 namespace WebApp.Controllers;
 
 public class CourseController(HttpClient httpClient, UserManager<UserEntity> userManager) : Controller
@@ -24,6 +25,7 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         {
             var viewModel = new CourseViewModel();
             viewModel.Courses = await PopulateCourses();
+            viewModel.SavedCourses = await CheckForSavedCourse();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -89,11 +91,11 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         return Enumerable.Empty<CourseModel>();
     }
 
-    [HttpPost] 
+    [HttpPost]
 
     public async Task<IActionResult> SaveCourse(int CourseId)
     {
-        string apiUrl = "https://localhost:7160/api/SavedCourse/";
+        string apiUrl = "https://localhost:7160/api/SavedCourse";
 
         var user = await _userManager.GetUserAsync(User);
 
@@ -103,28 +105,29 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
             {
                 UserEmail = user.Email!,
                 CourseId = CourseId,
+
             };
 
             var json = JsonConvert.SerializeObject(saveCourse);
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var respsonse = await _httpClient.PostAsync(apiUrl, content);
+            var response = await _httpClient.PostAsync(apiUrl, content);
 
-            if (respsonse.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 TempData["Saved"] = "Course saved";
-                return Ok(respsonse);
+                return RedirectToAction("Index", "Course");
             }
 
             else
             {
                 TempData["Failed"] = "Something went wrong";
-                return NoContent();
+                return RedirectToAction("Index", "Course");
             }
 
-
         }
-        return BadRequest();
+        TempData["Failed"] = "Something went wrong";
+        return RedirectToAction("Index", "Course");
     }
 
     [HttpGet]
@@ -152,6 +155,45 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
 
         return RedirectToAction("Index", "Course");
     }
+
+    private async Task<IEnumerable<CourseModel>> CheckForSavedCourse()
+    {
+        string apiUrl = "https://localhost:7160/api/savedcourse/";
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var userDto = new UserToGetCoursesModel
+            {
+                Email = user.Email!
+            };
+
+            if (userDto.Email != null)
+            {
+
+
+                var response = await _httpClient.GetAsync($"{apiUrl}{userDto.Email}");
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+                if (data != null)
+                {
+                    return data;
+                }
+
+
+                else
+                {
+                    return Enumerable.Empty<CourseModel>();
+                }
+            }
+
+            return Enumerable.Empty<CourseModel>();
+        }
+        return Enumerable.Empty<CourseModel>();
+    }
+ 
 
 }
 

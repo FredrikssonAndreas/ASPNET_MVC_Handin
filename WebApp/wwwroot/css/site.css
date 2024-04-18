@@ -4366,6 +4366,10 @@ footer .container .social-media a:hover {
   font-weight: 700;
   white-space: nowrap;
 }
+#courses .container .course-grid .course-item .course-box .image-and-best .bookmark.saved {
+  background-color: #6366F1;
+  color: white;
+}
 #courses .container .course-grid .course-item .course-box .image-and-best article .best {
   position: absolute;
   top: 1rem;
@@ -4568,6 +4572,10 @@ footer .container .social-media a:hover {
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
+}
+.dark-mode #courses .container .course-grid .course-item .course-box .image-and-best .bookmark.saved {
+  background-color: #6366F1;
+  color: white;
 }
 .dark-mode #courses .container .course-grid .course-item .course-box .image-and-best article .best {
   position: absolute;

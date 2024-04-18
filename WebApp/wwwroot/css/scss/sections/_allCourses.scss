@@ -134,6 +134,11 @@
                             }
                         }
 
+                        .bookmark.saved {
+                            background-color: $theme;
+                            color: white;
+                        }
+
                         article {
 
                             .best {
@@ -408,6 +413,11 @@
                                     font-weight: 700;
                                     white-space: nowrap;
                                 }
+                            }
+
+                            .bookmark.saved {
+                                background-color: $theme;
+                                color: white;
                             }
 
                             article {
